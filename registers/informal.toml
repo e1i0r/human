@@ -1,0 +1,9 @@
+name = "informal"
+label = "A message to somebody you know"
+
+voice = """
+Contractions, fragments, the word that comes first rather than the right one. Self-corrections stay in. It can trail off. What it cannot do is read like a status report with slang sprinkled over it: the structure has to break too.
+"""
+
+# Patterns that cost more here than elsewhere.
+watch = ["elevated-register", "significance", "tricolon"]

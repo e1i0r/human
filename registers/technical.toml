@@ -1,0 +1,9 @@
+name = "technical"
+label = "Explaining how something works"
+
+voice = """
+The mechanism, in order, with its real names. A number where a number exists. Trade-offs stated as trade-offs, with the cost named rather than softened. The reader is going to act on this, so an approximation that will not hold has to say so.
+"""
+
+# Patterns that cost more here than elsewhere.
+watch = ["hedges", "significance", "corporate-metaphor"]

@@ -18,7 +18,7 @@ export class Report {
    * @param {object} cfg
    * @param {{colour?: boolean, brief?: boolean, write?: (line: string) => void}} options
    */
-  constructor(cfg, { colour = true, brief = false, write = console.log } = {}) {
+  constructor(cfg, { colour = true, brief = false, write = console.log, register = null } = {}) {
     this.colour = colour;
     // Brief prints only what is not zero. The zeros are the point of the full
     // report, and a wall of them is the point of nothing when the report
@@ -28,6 +28,10 @@ export class Report {
     this.shown = cfg.report.hits_shown;
     this.width = cfg.report.quote_width;
     this.pendingLevel = null;
+    // The register a project declared. Until this was read, [write] register
+    // was a line in a config file that nothing in the program ever opened.
+    this.register = register;
+    this.watched = new Set(register?.watch ?? []);
   }
 
   #c(code, text) {
@@ -37,6 +41,10 @@ export class Report {
   header(path, units, sentences, words) {
     this.write(`\n${this.#c(BOLD, String(path))}   `
       + `${units} units · ${sentences} sentences · ${words} words`);
+    if (this.register && !this.brief) {
+      this.write(`  ${this.#c(DIM, `written as ${this.register.name}: `
+        + `${this.register.label.toLowerCase()}`)}`);
+    }
   }
 
   level(name) {
@@ -66,7 +74,15 @@ export class Report {
     if (over) mark = this.#c(d.level === "HARD" ? RED : YELLOW, d.level === "HARD" ? "!" : "?");
     const cap = d.budget ? ` / ${budget}` : "";
     const note = hits.length && d.note ? `   ${this.#c(DIM, `(${d.note})`)}` : "";
-    this.write(`  ${mark} ${d.label.padEnd(30)} ${String(hits.length).padStart(3)}${cap}${note}`);
+    // A register names the patterns that cost more in this kind of writing. Two
+    // hits of corporate metaphor is a shrug in a blog post and the reason a
+    // sales page does not land, and the same row of the report said neither.
+    //
+    // Its own column rather than a bolder label: the hook runs with the colour
+    // off, and a mark that only exists in colour is a mark the log never carries.
+    const watch = this.watched.has(d.id) ? this.#c(DIM, "·") : " ";
+    this.write(`  ${mark}${watch} ${d.label.padEnd(30)} `
+      + `${String(hits.length).padStart(3)}${cap}${note}`);
 
     for (const h of hits.slice(0, this.shown)) {
       this.write(`        ${this.#c(DIM, `L${String(h.unit.line).padEnd(5)}`)} `

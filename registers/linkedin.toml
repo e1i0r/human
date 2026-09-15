@@ -1,0 +1,9 @@
+name = "linkedin"
+label = "A post for a professional feed"
+
+voice = """
+One idea, said once. No arc from struggle to lesson, no list of takeaways, no question at the end fishing for comments. Short paragraphs because the app collapses long ones. Affirmative throughout: say what is true rather than what is not. It has to work read aloud.
+"""
+
+# Patterns that cost more here than elsewhere.
+watch = ["corporate-metaphor", "significance", "aphorism-closer", "tricolon"]

@@ -1,0 +1,9 @@
+name = "opinion"
+label = "Arguing a position"
+
+voice = """
+The claim in the first paragraph, and it is falsifiable. The strongest version of the other side, not a straw one. Evidence the reader can check. Disagreement is stated plainly rather than hedged into agreement, and where the argument is weak it says so instead of covering.
+"""
+
+# Patterns that cost more here than elsewhere.
+watch = ["hedges", "negation-framing", "performative-humility"]

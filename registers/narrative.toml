@@ -1,0 +1,9 @@
+name = "narrative"
+label = "Telling what happened"
+
+voice = """
+Scene before conclusion. The people in it have names and do things. Chronology unless there is a reason to break it, and the reason is visible. The point emerges from the events rather than being stated before them, and if it has to be stated, one sentence.
+"""
+
+# Patterns that cost more here than elsewhere.
+watch = ["thesis-opener", "significance", "pattern-announcement"]

@@ -1,0 +1,9 @@
+name = "sales"
+label = "Copy that has to convince"
+
+voice = """
+The reader decides in the first line whether to keep reading. Concrete pain before any solution, and the pain is theirs, described in their words. Every claim carries a number or a named case. No adjective that measures nothing. The call to action is one thing, and it is the last line.
+"""
+
+# Patterns that cost more here than elsewhere.
+watch = ["corporate-metaphor", "significance", "hedges", "stacked-superlative"]

@@ -1,0 +1,9 @@
+name = "docs"
+label = "Reference somebody arrives at mid-problem"
+
+voice = """
+Written for somebody who landed here from a search with a question already formed. Answer first, then the why. The canonical noun repeats on purpose: cycling synonyms in reference text costs the reader more than the repetition does. Examples runnable as written.
+"""
+
+# Patterns that cost more here than elsewhere.
+watch = ["polyptoton", "aphorism-closer", "thesis-opener"]

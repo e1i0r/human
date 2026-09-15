@@ -15,6 +15,7 @@ import { join } from "node:path";
 
 import { check, DETECTORS } from "../src/index.js";
 import { defaults, merge } from "../src/config.js";
+import { declared, load, names } from "../src/registers.js";
 import { parse } from "../src/toml.js";
 import { extract, split } from "../src/units/index.js";
 
@@ -131,10 +132,50 @@ test("toml: a register's paragraph survives its own punctuation", () => {
   assert.ok(r.voice.includes("\n"), "a multi-line string keeps its lines");
 });
 
+test("registers: each one says what it is, what it is for, and how it sounds", () => {
+  const found = names();
+  assert.ok(found.length >= 13, `only ${found.length} registers`);
+  for (const n of found) {
+    const r = load(n);
+    assert.equal(r.name, n, `${n}.toml calls itself ${r.name}`);
+    assert.ok(r.label?.length, `${n} has no label`);
+    assert.ok(r.voice?.trim().length > 100, `${n}: the voice is too short to steer a draft`);
+  }
+});
+
+test("registers: a watched pattern is a pattern that exists", () => {
+  // A typo in a watch list is silent in a way nothing else here is: the register
+  // prints, the report prints, and the pattern the writer was told to watch was
+  // never marked once.
+  const ids = new Set(DETECTORS.map((d) => d.id));
+  for (const n of names()) {
+    for (const id of load(n).watch ?? []) {
+      assert.ok(ids.has(id), `${n} watches "${id}", which is not a detector`);
+    }
+  }
+});
+
+test("registers: a name nobody knows lists the ones that exist", () => {
+  assert.throws(() => load("saels"), /no register called "saels".*sales/s);
+});
+
+test("registers: declaring none is not declaring a broken one", () => {
+  assert.equal(declared(defaults()), null);
+  assert.equal(declared({ write: { register: "sales" } }).name, "sales");
+});
+
 test("units: a code fence is not prose", () => {
   const units = extract("Uno dos tres.\n\n```\nconst x = 1;\n```\n\nCuatro cinco.\n", "a.md");
   const text = units.map((u) => u.text).join(" ");
   assert.ok(!text.includes("const x"), "the fence leaked into the prose");
+});
+
+test("units: a catalogue of the patterns is not a page full of them", () => {
+  const prose = "Y ahí está el punto: es robusto, comprehensivo y exhaustivo.";
+  assert.equal(extract(prose, "a.md").length, 1);
+  for (const marker of ["<!-- human: specimen -->", "<!-- tells: specimen -->"]) {
+    assert.equal(extract(`${marker}\n\n${prose}`, "a.md").length, 0, marker);
+  }
 });
 
 test("units: a sentence is not cut at an abbreviation", () => {

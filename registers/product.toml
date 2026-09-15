@@ -1,0 +1,25 @@
+name = "product"
+label = "A landing for people who will check your claims"
+
+voice = """
+The reader is going to open the repository before they believe anything, so
+every number has to survive being looked up and every claim has to name the
+thing it is about. Persuasion comes from specificity: the mechanism, in its own
+words, is more convincing than any sentence about the benefit of the mechanism.
+
+Show what it does rather than what it is for. A feature described by what
+happens when you press the key beats the same feature described as a capability.
+Where something is unfinished, say so with its date: a reader who finds the gap
+themselves stops trusting the rest of the page.
+
+It sells, and the selling is in the choosing of what to show. No adjective that
+measures nothing, no metaphor standing where a mechanism would fit, and no
+closing line that summarises what the page already proved. The call to action is
+the repository.
+"""
+
+# Patterns that cost more here than elsewhere. A landing is read by somebody
+# deciding whether to trust the author, so cadence in place of content costs
+# more than it would anywhere else.
+watch = ["corporate-metaphor", "significance", "stacked-superlative",
+         "aphorism-closer", "hedges"]

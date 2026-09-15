@@ -13,6 +13,7 @@ import { dirname, resolve, sep } from "node:path";
 import { check } from "../src/index.js";
 import { CONFIG_NAMES, DEFAULTS, merge } from "../src/config.js";
 import { Report } from "../src/report.js";
+import * as registers from "../src/registers.js";
 import { parse } from "../src/toml.js";
 
 const USAGE = `
@@ -20,6 +21,8 @@ const USAGE = `
   human FILE --only=REVIEW    only the ones that need judgement
   human FILE --ignore=ok.txt  one exact sentence per line, never counted
   human --config              every threshold with the argument for it
+  human --registers           what a piece of writing can be for
+  human --register=sales      one of them, in full
 
   Exit code is the number of budgets exceeded, so this drops into a pre-commit
   hook or a CI job unchanged. That is the whole point of it: whether a draft is
@@ -85,12 +88,18 @@ const { values: flags, positionals: files } = parseArgs({
     // escape codes, which is the one thing the flag exists to stop.
     colour: { type: "boolean", default: true },
     config: { type: "boolean", default: false },
+    registers: { type: "boolean", default: false },
+    register: { type: "string" },
     help: { type: "boolean", short: "h", default: false },
   },
 });
 
 if (flags.config) {
   showConfig();
+  process.exit(0);
+}
+if (flags.registers || flags.register) {
+  registers.show(flags.register);
   process.exit(0);
 }
 if (flags.help || !files.length) {
@@ -105,6 +114,7 @@ const ignore = flags.ignore
 const out = new Report(cfg, {
   colour: flags.colour && process.stdout.isTTY,
   brief: flags.brief,
+  register: registers.declared(cfg),
 });
 
 // The exit code counts what the report printed, and nothing it left out. Asking

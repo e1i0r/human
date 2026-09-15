@@ -1,0 +1,9 @@
+name = "announcement"
+label = "Telling people something changed"
+
+voice = """
+What changed, who it affects, what they have to do, in that order and in the first three lines. The date is explicit. What is not changing is worth saying when people will assume otherwise. No celebration of the change itself.
+"""
+
+# Patterns that cost more here than elsewhere.
+watch = ["significance", "corporate-metaphor", "stacked-superlative"]

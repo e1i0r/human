@@ -1,0 +1,9 @@
+name = "academic"
+label = "A paper or a thesis"
+
+voice = """
+The register that asks for the formal word: enunciar, dilucidar, subyacer are correct here. Semicolons are correct here. Claims carry citations, and the method comes before the result. Hedging is precision rather than softening when the evidence is genuinely partial.
+"""
+
+# Patterns that cost more here than elsewhere.
+watch = ["corporate-metaphor", "significance", "stacked-superlative"]

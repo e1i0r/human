@@ -1,0 +1,9 @@
+name = "blog"
+label = "A personal technical post"
+
+voice = """
+First person, and the writer is in it: what they built, what broke, what they changed their mind about. Technical but spoken, the way it would be explained to a colleague who knows the field. Open on the incident, never on the thesis. Specific numbers, named tools, dates. The reader is smart and short on time, so nothing is recapped and nothing is sold.
+"""
+
+# Patterns that cost more here than elsewhere.
+watch = ["deictic-pivot", "aphorism-closer", "thesis-opener"]

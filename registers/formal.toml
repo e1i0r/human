@@ -1,0 +1,9 @@
+name = "formal"
+label = "A document with consequences"
+
+voice = """
+A contract, a policy, a letter that will be filed. Precision over flow. The same word for the same thing every time, even when it reads repetitive, because a synonym is an ambiguity somebody will argue about later. No metaphor and no idiom.
+"""
+
+# Patterns that cost more here than elsewhere.
+watch = ["corporate-metaphor", "english-calque", "polyptoton"]
