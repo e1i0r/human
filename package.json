@@ -1,6 +1,6 @@
 {
   "name": "@e1i0/human",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Count the AI tells in a draft and fail when one is over budget. Spanish and English.",
   "type": "module",
   "bin": {
@@ -15,10 +15,17 @@
   },
   "files": [
     "agents",
-    "src", "bin", "hook", "registers", "SKILL.md", "skills.sh.json",
+    "src",
+    "bin",
+    "hook",
+    "registers",
+    "SKILL.md",
+    "skills.sh.json",
     "!registers/voice-*.toml"
   ],
-  "engines": { "node": ">=20" },
+  "engines": {
+    "node": ">=20"
+  },
   "scripts": {
     "test": "node --test",
     "record": "node scripts/record.mjs",
@@ -26,6 +33,15 @@
     "check": "node bin/human.js README.md SKILL.md"
   },
   "license": "MIT",
-  "repository": { "type": "git", "url": "git+https://github.com/e1i0r/human.git" },
-  "keywords": ["writing", "ai-detection", "prose", "spanish", "linter"]
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/e1i0r/human.git"
+  },
+  "keywords": [
+    "writing",
+    "ai-detection",
+    "prose",
+    "spanish",
+    "linter"
+  ]
 }
