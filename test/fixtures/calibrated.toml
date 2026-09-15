@@ -1,0 +1,38 @@
+# Calibrated against 29 files, 34,250 words.
+# Regenerate with the calibrator, do not hand-edit the numbers
+# without saying why beside them.
+
+# Detectors this writer trips regularly. Each line is a
+# measurement of their prose, not a rule about writing.
+#   mid-sentence-colon: 15.56 hits per 1000 words at p90
+#   aphorism-closer: 9.45 hits per 1000 words at p90
+#   anaphora: 3.36 hits per 1000 words at p90
+#   polyptoton: 3.30 hits per 1000 words at p90
+#   stacked-appositive: 2.76 hits per 1000 words at p90
+#   subjectless-fragment: 2.69 hits per 1000 words at p90
+#   negation-framing: 2.53 hits per 1000 words at p90
+#   heading-no-subject: 2.13 hits per 1000 words at p90
+#   pseudo-cleft: 2.12 hits per 1000 words at p90
+#   deictic-pivot: 2.04 hits per 1000 words at p90
+#   parallel-subject-mirror: 1.72 hits per 1000 words at p90
+#   agentless-passive: 1.34 hits per 1000 words at p90
+#   tricolon: 1.34 hits per 1000 words at p90
+#   banned-vocabulary: 1.12 hits per 1000 words at p90
+#   negated-echo: 1.11 hits per 1000 words at p90
+#   hedges: 1.02 hits per 1000 words at p90
+#   participial-setup: 0.98 hits per 1000 words at p90
+#   thesis-opener: 0.78 hits per 1000 words at p90
+
+[rhythm]
+spread = 22      # 10th percentile of this corpus
+mid_band = 55     # 90th percentile
+shortest = 4      # 90th percentile
+trios = 3         # median, not the p90 the calibrator suggested:
+                  # the p90 only fires once the page is already broken
+
+[write]
+register = "blog"   # los posts. La landing de sites/orbit usa "product":
+                    # su propio .tells.toml lo dice
+
+[skip]
+paths = ["docs/"]   # notas internas, nunca se publican

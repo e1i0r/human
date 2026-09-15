@@ -1,0 +1,1021 @@
+{
+ "fixture-es.md": {
+  "units": 22,
+  "words": 302,
+  "sentences": 38,
+  "language": "es",
+  "failures": 7,
+  "findings": [
+   {
+    "id": "em-dash",
+    "skipped": false,
+    "over": false,
+    "budget": 1,
+    "hits": [
+     [
+      5,
+      "Lo que hace este sistema es coordinar procesos — y además, lo hace bien."
+     ]
+    ]
+   },
+   {
+    "id": "semicolon",
+    "skipped": false,
+    "over": true,
+    "budget": 0,
+    "hits": [
+     [
+      5,
+      "No es una herramienta más, es una plataforma; robusta y comprehensiva."
+     ]
+    ]
+   },
+   {
+    "id": "curly-quotes",
+    "skipped": false,
+    "over": true,
+    "budget": 0,
+    "hits": [
+     [
+      35,
+      "Dijo “hola” y se fue."
+     ]
+    ]
+   },
+   {
+    "id": "banned-vocabulary",
+    "skipped": false,
+    "over": true,
+    "budget": 0,
+    "hits": [
+     [
+      5,
+      "No es una herramienta más, es una plataforma; robusta y comprehensiva."
+     ],
+     [
+      22,
+      "Es importante notar que esto es crucial."
+     ],
+     [
+      22,
+      "Las reglas son exhaustivas."
+     ]
+    ]
+   },
+   {
+    "id": "negation-framing",
+    "skipped": false,
+    "over": true,
+    "budget": 0,
+    "hits": [
+     [
+      5,
+      "No es una herramienta más, es una plataforma; robusta y comprehensiva."
+     ]
+    ]
+   },
+   {
+    "id": "ai-transition",
+    "skipped": false,
+    "over": true,
+    "budget": 0,
+    "hits": [
+     [
+      22,
+      "Además, el equipo trabaja."
+     ]
+    ]
+   },
+   {
+    "id": "subjectless-fragment",
+    "skipped": false,
+    "over": true,
+    "budget": 0,
+    "hits": [
+     [
+      16,
+      "Nunca de un modelo."
+     ],
+     [
+      16,
+      "Sin fuente no entra."
+     ]
+    ]
+   },
+   {
+    "id": "heading-no-subject",
+    "skipped": false,
+    "over": true,
+    "budget": 0,
+    "hits": [
+     [
+      1,
+      "Cómo funciona"
+     ],
+     [
+      3,
+      "Dónde vive"
+     ]
+    ]
+   },
+   {
+    "id": "agentless-passive",
+    "skipped": false,
+    "over": true,
+    "budget": 0,
+    "hits": [
+     [
+      14,
+      "La regla se escribe."
+     ],
+     [
+      14,
+      "El criterio se decide."
+     ]
+    ]
+   },
+   {
+    "id": "pseudo-cleft",
+    "skipped": false,
+    "over": true,
+    "budget": 0,
+    "hits": [
+     [
+      5,
+      "Lo que hace este sistema es coordinar procesos — y además, lo hace bien."
+     ]
+    ]
+   },
+   {
+    "id": "anaphora",
+    "skipped": false,
+    "over": true,
+    "budget": 0,
+    "hits": [
+     [
+      25,
+      "Nadie mira.  ||  Nadie revisa."
+     ]
+    ]
+   },
+   {
+    "id": "polyptoton",
+    "skipped": false,
+    "over": true,
+    "budget": 0,
+    "hits": [
+     [
+      25,
+      "raiz 'regla' x3: La regla que define la regla que aplica a cada regla queda escrita. Na"
+     ]
+    ]
+   },
+   {
+    "id": "mid-sentence-colon",
+    "skipped": false,
+    "over": true,
+    "budget": 0,
+    "hits": [
+     [
+      28,
+      "El comando corre siempre: cada fase, cada vez, sin fallar nunca jamás."
+     ]
+    ]
+   },
+   {
+    "id": "aphorism-closer",
+    "skipped": false,
+    "over": true,
+    "budget": 0,
+    "hits": [
+     [
+      8,
+      "El patrón es simple."
+     ],
+     [
+      22,
+      "Las reglas son exhaustivas."
+     ],
+     [
+      32,
+      "Eso es lo que importa."
+     ]
+    ]
+   },
+   {
+    "id": "deictic-pivot",
+    "skipped": false,
+    "over": true,
+    "budget": 0,
+    "hits": [
+     [
+      18,
+      "Eso es todo."
+     ],
+     [
+      25,
+      "Y ahí está."
+     ],
+     [
+      32,
+      "Eso es lo que importa."
+     ]
+    ]
+   },
+   {
+    "id": "significance",
+    "skipped": false,
+    "over": true,
+    "budget": 0,
+    "hits": [
+     [
+      22,
+      "El sistema es la definición de calidad."
+     ]
+    ]
+   },
+   {
+    "id": "tricolon",
+    "skipped": false,
+    "over": true,
+    "budget": 0,
+    "hits": [
+     [
+      18,
+      "Rápido, barato, confiable."
+     ],
+     [
+      28,
+      "El comando corre siempre: cada fase, cada vez, sin fallar nunca jamás."
+     ]
+    ]
+   },
+   {
+    "id": "stacked-appositive",
+    "skipped": false,
+    "over": true,
+    "budget": 0,
+    "hits": [
+     [
+      18,
+      "Rápido, barato, confiable."
+     ],
+     [
+      47,
+      "Cabe enunciar que el sistema conlleva riesgos, empero, en aras de la claridad."
+     ]
+    ]
+   },
+   {
+    "id": "thesis-opener",
+    "skipped": false,
+    "over": true,
+    "budget": 0,
+    "hits": [
+     [
+      8,
+      "El problema es que nadie mide."
+     ]
+    ]
+   },
+   {
+    "id": "pattern-announcement",
+    "skipped": false,
+    "over": true,
+    "budget": 0,
+    "hits": [
+     [
+      8,
+      "El patrón es simple."
+     ]
+    ]
+   },
+   {
+    "id": "turns-out",
+    "skipped": false,
+    "over": true,
+    "budget": 0,
+    "hits": [
+     [
+      8,
+      "Resulta que la causa era otra."
+     ]
+    ]
+   },
+   {
+    "id": "participial-setup",
+    "skipped": false,
+    "over": true,
+    "budget": 0,
+    "hits": [
+     [
+      30,
+      "Una vez definido el alcance, el equipo arranca con lo suyo."
+     ]
+    ]
+   },
+   {
+    "id": "performative-humility",
+    "skipped": false,
+    "over": true,
+    "budget": 0,
+    "hits": [
+     [
+      20,
+      "Para ser justos, hay que reconocer que el límite honesto está ahí."
+     ]
+    ]
+   },
+   {
+    "id": "stacked-superlative",
+    "skipped": false,
+    "over": true,
+    "budget": 0,
+    "hits": [
+     [
+      11,
+      "Todavía más difícil es la parte que sigue, y eso lo hace aún más duro."
+     ]
+    ]
+   },
+   {
+    "id": "parallel-subject-mirror",
+    "skipped": false,
+    "over": true,
+    "budget": 0,
+    "hits": [
+     [
+      14,
+      "La regla se escribe.  ||  La norma se aplica."
+     ]
+    ]
+   },
+   {
+    "id": "hedges",
+    "skipped": false,
+    "over": true,
+    "budget": 0,
+    "hits": [
+     [
+      8,
+      "Generalmente los equipos suelen ignorar esto."
+     ],
+     [
+      37,
+      "El reporte te dice que suele venir junto con estos archivos y esta vez no vino."
+     ]
+    ]
+   },
+   {
+    "id": "negated-echo",
+    "skipped": false,
+    "over": true,
+    "budget": 0,
+    "hits": [
+     [
+      37,
+      "El reporte te dice que suele venir junto con estos archivos y esta vez no vino."
+     ]
+    ]
+   },
+   {
+    "id": "corporate-metaphor",
+    "skipped": false,
+    "over": true,
+    "budget": 0,
+    "hits": [
+     [
+      39,
+      "Cada equipo en su silo, sin sinergia ni palanca para mover la aguja."
+     ]
+    ]
+   },
+   {
+    "id": "peninsular-spanish",
+    "skipped": false,
+    "over": true,
+    "budget": 0,
+    "hits": [
+     [
+      41,
+      "Coge el fichero del ordenador y tira lo que sobre."
+     ]
+    ]
+   },
+   {
+    "id": "english-calque",
+    "skipped": false,
+    "over": true,
+    "budget": 0,
+    "hits": [
+     [
+      43,
+      "El agente se da contra una pared y eso no hace sentido, al final del día hay que remover la librería."
+     ],
+     [
+      49,
+      "Esa regla se escribió muy ancha y hay que dejarla estrecha."
+     ]
+    ]
+   },
+   {
+    "id": "nominalized-particle",
+    "skipped": false,
+    "over": true,
+    "budget": 0,
+    "hits": [
+     [
+      45,
+      "El flujo entero queda esperando tu sí antes de seguir."
+     ]
+    ]
+   },
+   {
+    "id": "elevated-register",
+    "skipped": false,
+    "over": true,
+    "budget": 0,
+    "hits": [
+     [
+      47,
+      "Cabe enunciar que el sistema conlleva riesgos, empero, en aras de la claridad."
+     ]
+    ]
+   }
+  ],
+  "rhythm": {
+   "rows": [
+    [
+     "spread, longest to shortest",
+     19,
+     ">= 20",
+     false
+    ],
+    [
+     "share in the 10-20 band",
+     42,
+     "<= 49",
+     true
+    ],
+    [
+     "shortest sentence",
+     2,
+     "<= 6",
+     true
+    ],
+    [
+     "runs of three within 5",
+     6,
+     "<= 3",
+     false
+    ]
+   ],
+   "counts": [
+    14,
+    11,
+    6,
+    6,
+    6,
+    4,
+    11,
+    15,
+    4,
+    4,
+    4,
+    4,
+    4,
+    3,
+    3,
+    12,
+    4,
+    7,
+    7,
+    4,
+    13,
+    2,
+    2,
+    3,
+    12,
+    11,
+    18,
+    5,
+    5,
+    16,
+    13,
+    10,
+    21,
+    10,
+    13,
+    11
+   ]
+  }
+ },
+ "fixture-en.md": {
+  "units": 21,
+  "words": 313,
+  "sentences": 36,
+  "language": "en",
+  "failures": 6,
+  "findings": [
+   {
+    "id": "em-dash",
+    "skipped": false,
+    "over": false,
+    "budget": 1,
+    "hits": [
+     [
+      5,
+      "What this system does is coordinate processes — and moreover, it does so robustly."
+     ]
+    ]
+   },
+   {
+    "id": "semicolon",
+    "skipped": false,
+    "over": true,
+    "budget": 0,
+    "hits": [
+     [
+      5,
+      "It's not just a tool, it's a platform; comprehensive and delve-worthy."
+     ]
+    ]
+   },
+   {
+    "id": "curly-quotes",
+    "skipped": false,
+    "over": true,
+    "budget": 0,
+    "hits": [
+     [
+      50,
+      "She replied “of course” and hung up."
+     ]
+    ]
+   },
+   {
+    "id": "banned-vocabulary",
+    "skipped": false,
+    "over": true,
+    "budget": 0,
+    "hits": [
+     [
+      5,
+      "What this system does is coordinate processes — and moreover, it does so robustly."
+     ],
+     [
+      5,
+      "It's not just a tool, it's a platform; comprehensive and delve-worthy."
+     ],
+     [
+      22,
+      "Furthermore, the team works."
+     ],
+     [
+      22,
+      "It is important to note that this is crucial."
+     ],
+     [
+      22,
+      "The system stands as a testament to quality."
+     ],
+     [
+      22,
+      "A myriad of comprehensive rules."
+     ]
+    ]
+   },
+   {
+    "id": "negation-framing",
+    "skipped": false,
+    "over": true,
+    "budget": 0,
+    "hits": [
+     [
+      5,
+      "It's not just a tool, it's a platform; comprehensive and delve-worthy."
+     ]
+    ]
+   },
+   {
+    "id": "ai-transition",
+    "skipped": false,
+    "over": true,
+    "budget": 0,
+    "hits": [
+     [
+      22,
+      "Furthermore, the team works."
+     ]
+    ]
+   },
+   {
+    "id": "subjectless-fragment",
+    "skipped": false,
+    "over": true,
+    "budget": 0,
+    "hits": [
+     [
+      42,
+      "Without warning."
+     ],
+     [
+      42,
+      "Never from a model."
+     ]
+    ]
+   },
+   {
+    "id": "heading-no-subject",
+    "skipped": false,
+    "over": true,
+    "budget": 0,
+    "hits": [
+     [
+      1,
+      "How it works"
+     ],
+     [
+      3,
+      "Where it lives"
+     ]
+    ]
+   },
+   {
+    "id": "agentless-passive",
+    "skipped": true,
+    "over": false,
+    "budget": 0,
+    "hits": []
+   },
+   {
+    "id": "pseudo-cleft",
+    "skipped": false,
+    "over": true,
+    "budget": 0,
+    "hits": [
+     [
+      5,
+      "What this system does is coordinate processes — and moreover, it does so robustly."
+     ]
+    ]
+   },
+   {
+    "id": "anaphora",
+    "skipped": false,
+    "over": true,
+    "budget": 0,
+    "hits": [
+     [
+      16,
+      "Nobody mines.  ||  Nobody reviews."
+     ]
+    ]
+   },
+   {
+    "id": "polyptoton",
+    "skipped": false,
+    "over": true,
+    "budget": 0,
+    "hits": [
+     [
+      44,
+      "raiz 'about' x3: The rule that the rule about rules governs is a rule nobody wrote down"
+     ]
+    ]
+   },
+   {
+    "id": "mid-sentence-colon",
+    "skipped": false,
+    "over": true,
+    "budget": 0,
+    "hits": [
+     [
+      39,
+      "The point is this: nobody reads the report twice after the first wall of noise lands on them, which is the thing every one of these tools gets wrong."
+     ]
+    ]
+   },
+   {
+    "id": "aphorism-closer",
+    "skipped": false,
+    "over": true,
+    "budget": 0,
+    "hits": [
+     [
+      8,
+      "The pattern is simple."
+     ],
+     [
+      22,
+      "A myriad of comprehensive rules."
+     ]
+    ]
+   },
+   {
+    "id": "deictic-pivot",
+    "skipped": false,
+    "over": true,
+    "budget": 0,
+    "hits": [
+     [
+      16,
+      "And there it is."
+     ]
+    ]
+   },
+   {
+    "id": "significance",
+    "skipped": false,
+    "over": true,
+    "budget": 0,
+    "hits": [
+     [
+      22,
+      "The system stands as a testament to quality."
+     ]
+    ]
+   },
+   {
+    "id": "tricolon",
+    "skipped": false,
+    "over": true,
+    "budget": 0,
+    "hits": [
+     [
+      5,
+      "It's not just a tool, it's a platform; comprehensive and delve-worthy."
+     ],
+     [
+      11,
+      "With the spec written and the limits in place, the model produces."
+     ],
+     [
+      18,
+      "Fast, cheap, reliable."
+     ]
+    ]
+   },
+   {
+    "id": "stacked-appositive",
+    "skipped": false,
+    "over": true,
+    "budget": 0,
+    "hits": [
+     [
+      18,
+      "Fast, cheap, reliable."
+     ]
+    ]
+   },
+   {
+    "id": "thesis-opener",
+    "skipped": false,
+    "over": true,
+    "budget": 0,
+    "hits": [
+     [
+      8,
+      "The real question is nobody measures."
+     ]
+    ]
+   },
+   {
+    "id": "pattern-announcement",
+    "skipped": false,
+    "over": true,
+    "budget": 0,
+    "hits": [
+     [
+      8,
+      "The pattern is simple."
+     ]
+    ]
+   },
+   {
+    "id": "turns-out",
+    "skipped": false,
+    "over": true,
+    "budget": 0,
+    "hits": [
+     [
+      8,
+      "Turns out the cause was elsewhere."
+     ]
+    ]
+   },
+   {
+    "id": "participial-setup",
+    "skipped": false,
+    "over": true,
+    "budget": 0,
+    "hits": [
+     [
+      11,
+      "With the spec written and the limits in place, the model produces."
+     ],
+     [
+      32,
+      "Having done that and settled this, the team ships."
+     ]
+    ]
+   },
+   {
+    "id": "performative-humility",
+    "skipped": false,
+    "over": true,
+    "budget": 0,
+    "hits": [
+     [
+      20,
+      "To be fair, a few caveats are worth noting here."
+     ]
+    ]
+   },
+   {
+    "id": "stacked-superlative",
+    "skipped": false,
+    "over": true,
+    "budget": 0,
+    "hits": [
+     [
+      11,
+      "Even harder is the part that follows, and that makes it harder still."
+     ]
+    ]
+   },
+   {
+    "id": "parallel-subject-mirror",
+    "skipped": false,
+    "over": true,
+    "budget": 0,
+    "hits": [
+     [
+      14,
+      "The rule is written.  ||  The norm is applied."
+     ],
+     [
+      14,
+      "The norm is applied.  ||  The standard is decided."
+     ]
+    ]
+   },
+   {
+    "id": "hedges",
+    "skipped": false,
+    "over": true,
+    "budget": 0,
+    "hits": [
+     [
+      8,
+      "Generally teams typically ignore this."
+     ]
+    ]
+   },
+   {
+    "id": "negated-echo",
+    "skipped": false,
+    "over": true,
+    "budget": 0,
+    "hits": [
+     [
+      47,
+      "The report tells you what usually ships alongside these files and this time it did not."
+     ]
+    ]
+   },
+   {
+    "id": "corporate-metaphor",
+    "skipped": false,
+    "over": true,
+    "budget": 0,
+    "hits": [
+     [
+      36,
+      "Each team sits in its own silo, with no ecosystem and no way to move the needle on any of it, so the synergy never arrives."
+     ]
+    ]
+   },
+   {
+    "id": "peninsular-spanish",
+    "skipped": true,
+    "over": false,
+    "budget": 0,
+    "hits": []
+   },
+   {
+    "id": "english-calque",
+    "skipped": true,
+    "over": false,
+    "budget": 0,
+    "hits": []
+   },
+   {
+    "id": "nominalized-particle",
+    "skipped": true,
+    "over": false,
+    "budget": 0,
+    "hits": []
+   },
+   {
+    "id": "elevated-register",
+    "skipped": true,
+    "over": false,
+    "budget": 0,
+    "hits": []
+   }
+  ],
+  "rhythm": {
+   "rows": [
+    [
+     "spread, longest to shortest",
+     27,
+     ">= 20",
+     true
+    ],
+    [
+     "share in the 10-20 band",
+     26,
+     "<= 49",
+     true
+    ],
+    [
+     "shortest sentence",
+     2,
+     "<= 6",
+     true
+    ],
+    [
+     "runs of three within 5",
+     6,
+     "<= 3",
+     false
+    ]
+   ],
+   "counts": [
+    14,
+    11,
+    6,
+    5,
+    6,
+    4,
+    12,
+    13,
+    4,
+    4,
+    4,
+    2,
+    2,
+    4,
+    3,
+    2,
+    10,
+    4,
+    9,
+    8,
+    5,
+    14,
+    19,
+    3,
+    5,
+    9,
+    13,
+    26,
+    29,
+    2,
+    4,
+    28,
+    16,
+    7
+   ]
+  }
+ },
+ "calibrated.toml": {
+  "rhythm": {
+   "spread": 22,
+   "mid_band": 55,
+   "shortest": 4,
+   "trios": 3
+  },
+  "write": {
+   "register": "blog"
+  },
+  "skip": {
+   "paths": [
+    "docs/"
+   ]
+  }
+ },
+ "register.toml": {
+  "name": "product",
+  "label": "A landing for people who will check your claims",
+  "voice": "The reader is going to open the repository before they believe anything, so\nevery number has to survive being looked up and every claim has to name the\nthing it is about. Persuasion comes from specificity: the mechanism, in its own\nwords, is more convincing than any sentence about the benefit of the mechanism.\n\nShow what it does rather than what it is for. A feature described by what\nhappens when you press the key beats the same feature described as a capability.\nWhere something is unfinished, say so with its date: a reader who finds the gap\nthemselves stops trusting the rest of the page.\n\nIt sells, and the selling is in the choosing of what to show. No adjective that\nmeasures nothing, no metaphor standing where a mechanism would fit, and no\nclosing line that summarises what the page already proved. The call to action is\nthe repository.\n",
+  "watch": [
+   "corporate-metaphor",
+   "significance",
+   "stacked-superlative",
+   "aphorism-closer",
+   "hedges"
+  ]
+ }
+}

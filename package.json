@@ -11,7 +11,8 @@
   "files": ["src", "bin", "registers", "SKILL.md"],
   "engines": { "node": ">=20" },
   "scripts": {
-    "test": "node --test test/",
+    "test": "node --test",
+    "record": "node scripts/record.mjs",
     "check": "node bin/human.js README.md SKILL.md"
   },
   "license": "MIT",

@@ -22,10 +22,10 @@ export const CONFIG_NAME = ".human.toml";
 /**
  * What counts as a config file, in the order a directory is searched.
  *
- * The Python this was ported from reads .tells.toml, and the projects already
- * calibrated against it did not rename anything. Reading both means a repository
- * keeps its thresholds the day it installs this, and a directory holding both
- * files uses the one named after the tool that is running.
+ * This was called tells before it was called human, and the projects calibrated
+ * under that name did not rename anything. Reading both means a repository keeps
+ * its thresholds the day it installs this, and a directory holding both files
+ * uses the one named after the tool that is running.
  */
 export const CONFIG_NAMES = [CONFIG_NAME, ".tells.toml"];
 

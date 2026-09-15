@@ -1,9 +1,9 @@
 /**
  * Read a config file.
  *
- * Python gets tomllib in the standard library. Node has no TOML parser at all,
- * and the first version of the CLI quietly fell back to the defaults when it
- * could not find one: it printed a clean report against numbers the project had
+ * Node has no TOML parser and no dependency is worth one here, so this is it.
+ * The first version of the CLI shrugged and used the defaults when it could not
+ * find a parser: it printed a clean report against numbers the project had
  * already overridden, which is worse than refusing to run.
  *
  * So this reads the shape these files actually have, and nothing else. Tables,

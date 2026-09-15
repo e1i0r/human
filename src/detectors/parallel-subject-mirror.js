@@ -21,8 +21,8 @@
  */
 import { REVIEW, detector } from "./base.js";
 
-// The second group is whatever Python's \w matches, digits included: "El 75%
-// del día" mirrors "El producto que", and a letters-only class misses it.
+// The second group takes digits as well as letters: "El 75% del día" mirrors
+// "El producto que", and a letters-only class walks straight past it.
 const DET = /^(El|La|Los|Las|Un|Una|The|A)\s+([\p{L}\p{N}_]+)/iu;
 
 export default detector({

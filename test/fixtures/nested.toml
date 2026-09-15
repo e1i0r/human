@@ -1,0 +1,5 @@
+# A landing inside a blog. It is not a post: it sells, and the reader opens the
+# repository before believing you. Same rhythm, different register.
+
+[write]
+register = "product"

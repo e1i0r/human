@@ -2,7 +2,7 @@
  * banned-vocabulary · HARD · es/en
  *
  * Detects
- *   143 terms, both languages, grouped in the Python source by what they are
+ *   143 terms, both languages, grouped in the source below by what they are
  *   doing: core vocabulary, hedges and filler, formula openers and closers,
  *   significance inflation, promotional register. Spanish carries its gender
  *   and number endings, because robusto did not match robusta for an afternoon.
