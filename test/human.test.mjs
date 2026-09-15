@@ -22,6 +22,8 @@ import { ES, RHYTHM_ES } from "../src/i18n/es.js";
 import { isProse, reportOn } from "../hook/common.js";
 import { extract, split } from "../src/units/index.js";
 import { measure } from "../src/rhythm/index.js";
+import { FIXES, applyFix, fixFor } from "../src/fixes.js";
+import { diff } from "../src/diff.js";
 
 const HERE = import.meta.dirname;
 const ROOT = dirname(HERE);
@@ -177,6 +179,100 @@ test("skill: the four fields a fixer needs survive the generation", () => {
       assert.match(section, /\*\*Not this\.\*\* \S/, `${d.id}: no legitimate version`);
     }
   }
+});
+
+test("fixes: only the ones a pattern can actually settle have one", () => {
+  // Five of thirty-two, and nearly the same five as HARD. Rewriting a
+  // pseudo-cleft needs to know what the sentence meant, and a button there
+  // would be promising a rewrite that does not exist.
+  const withFix = DETECTORS.filter((d) => fixFor(d.id));
+  assert.equal(withFix.length, FIXES.length);
+  for (const f of FIXES) {
+    assert.ok(DETECTORS.some((d) => d.id === f.id), `${f.id} is not a detector`);
+    assert.ok(f.what?.length > 10, `${f.id}: el botón no dice qué hace`);
+  }
+});
+
+test("fixes: an applied fix removes its own finding", () => {
+  const cases = [
+    ["em-dash", "La tarea corre sola — y deja el registro."],
+    ["curly-quotes", "Dijo “hola” y se fue."],
+    ["semicolon", "No es una plataforma; robusta y clara."],
+    ["ai-transition", "Además, el equipo trabaja todos los días sin parar."],
+    ["banned-vocabulary", "Vamos a utilizar el motor en aras de reducir el fraude."],
+  ];
+  for (const [id, text] of cases) {
+    const before = check(text, "a.md").findings.find((f) => f.detector.id === id);
+    assert.ok(before.hits.length, `${id}: el caso de prueba no lo dispara`);
+    const after = check(applyFix(id, text), "a.md").findings.find((f) => f.detector.id === id);
+    assert.equal(after.hits.length, 0, `${id}: el arreglo no lo quita`);
+  }
+});
+
+test("fixes: an applied fix does not write a new one", () => {
+  // The whole reason the fixing loop re-runs over the document: a fix writes
+  // tells while it removes them. A fix this offers with one click has to be one
+  // that does not, or the page hands somebody a worse draft than they had.
+  const cases = [
+    ["em-dash", "La tarea corre sola — y deja el registro escrito para el que venga."],
+    ["curly-quotes", "Dijo “hola” y se fue sin mirar a nadie de los que estaban."],
+    ["semicolon", "No es una plataforma cualquiera; aguanta cuatro mil corridas al día."],
+    ["ai-transition", "Además, el equipo revisa cada regla antes de dejarla entrar."],
+    ["banned-vocabulary", "Vamos a utilizar el motor en aras de reducir el fraude del mes."],
+  ];
+  const hard = (text) => check(text, "a.md").findings
+    .filter((f) => f.detector.level === "HARD" && f.hits.length)
+    .flatMap((f) => f.hits.map(() => f.detector.id));
+
+  for (const [id, text] of cases) {
+    const before = new Set(hard(text));
+    const after = hard(applyFix(id, text));
+    const born = after.filter((x) => !before.has(x));
+    assert.deepEqual(born, [], `${id}: el arreglo escribió ${born.join(", ")}`);
+  }
+});
+
+test("fixes: nothing changes when there is nothing to change", () => {
+  // A hyphen in a range, and a banned word with no plain equivalent. Guessing
+  // is worse than leaving it: "robusto" becomes whatever the thing does, and
+  // only the person writing knows that.
+  assert.equal(applyFix("em-dash", "Un rango de 10-20 palabras."), "Un rango de 10-20 palabras.");
+  assert.equal(applyFix("banned-vocabulary", "Una plataforma robusta."), "Una plataforma robusta.");
+  assert.equal(applyFix("aphorism-closer", "Y eso fue todo."), "Y eso fue todo.");
+});
+
+test("diff: the pieces put both versions back together", () => {
+  // The one thing it must never do is lose a word. A diff that drops text and
+  // is shown as "antes" is a page lying about what the draft says.
+  const cases = [
+    ["La tarea corre sola — y deja el registro.", "em-dash"],
+    ["Vamos a utilizar el motor en aras de reducir el fraude.", "banned-vocabulary"],
+    ["Dijo “hola” y se fue, con su ‘cosa’.", "curly-quotes"],
+    ["Además, el equipo trabaja.", "ai-transition"],
+  ];
+  for (const [before, id] of cases) {
+    const after = applyFix(id, before);
+    const parts = diff(before, after);
+    const back = (kind) => parts.filter((p) => p.kind !== kind).map((p) => p.text).join("");
+    assert.equal(back("in"), before, `${id}: el antes no se reconstruye`);
+    assert.equal(back("out"), after, `${id}: el después no se reconstruye`);
+    assert.ok(parts.some((p) => p.kind === "out"), `${id}: no marcó nada`);
+  }
+});
+
+test("diff: two changes in one sentence are two changes", () => {
+  // Trimming only the shared ends turns "utilizar ... en aras de" into one
+  // block covering the words between them, which reads as a rewrite of the
+  // whole sentence rather than as two substitutions.
+  const before = "Vamos a utilizar el motor en aras de reducir el fraude.";
+  const parts = diff(before, applyFix("banned-vocabulary", before));
+  assert.equal(parts.filter((p) => p.kind === "out").length, 2);
+  assert.ok(parts.some((p) => p.kind === "same" && p.text.includes("el motor")),
+    "lo que no cambió tiene que quedar marcado como igual");
+});
+
+test("diff: nothing changed is nothing marked", () => {
+  assert.deepEqual(diff("Igual.", "Igual."), [{ text: "Igual.", kind: "same" }]);
 });
 
 test("es: every detector says in Spanish what it looks for", () => {

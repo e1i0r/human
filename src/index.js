@@ -19,6 +19,8 @@ export { measure } from "./rhythm/index.js";
 export { Report } from "./report.js";
 export * as lang from "./lang.js";
 export { ES, GROUPS_ES, RHYTHM_ES } from "./i18n/es.js";
+export { FIXES, applyFix, fixFor } from "./fixes.js";
+export { diff } from "./diff.js";
 
 /**
  * @typedef {object} Finding
