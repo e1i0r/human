@@ -72,7 +72,7 @@ export const ES = {
     label: "fragmento sin sujeto",
     what: "Frase de seis palabras o menos que abre con preposición o negación y no tiene a nadie haciendo algo.",
     fix:
-      "Devuélvele el sujeto, o fúndela con la frase de al lado. No la borres: el ritmo pide frases cortas. Lo que sobra es que no haya nadie haciendo algo, nunca el largo.",
+      "Devuélvele el sujeto, o fúndela con la frase de al lado. No la borres, que el ritmo pide frases cortas. El largo no estorba. Estorba que no haya nadie haciendo nada.",
     not:
       "Una frase corta con sujeto: \"Me pasa seguido.\" Una lista de nombres: \"Claude Code, Codex.\" Una respuesta a un cuándo: \"Siempre.\" · \"Antes del pull request.\"",
   },
@@ -285,7 +285,7 @@ export const ES = {
 export const RHYTHM_ES = {
   "spread, longest to shortest": {
     label: "rango largo-corto",
-    what: "La frase más larga menos la más corta, en palabras. La prosa generada se queda en una banda estrecha.",
+    what: "La frase más larga menos la más corta, en palabras. Lo generado se queda en una banda estrecha.",
   },
   "share in the 10-20 band": {
     label: "banda 10-20",
@@ -305,17 +305,17 @@ export const RHYTHM_ES = {
 export const GROUPS_ES = {
   HARD: {
     label: "Duros",
-    head: "Lo que el patrón zanja",
-    what: "Aquí no hay nada que interpretar: una raya es una raya. Pasarse del presupuesto rompe la corrida, y el código de salida los cuenta.",
+    head: "Un patrón los zanja solo",
+    what: "Una raya es una raya y ninguna lectura cambia eso. Pasarse del presupuesto rompe la corrida, y el código de salida cuenta cuántos se pasaron.",
   },
   REVIEW: {
     label: "A criterio",
-    head: "Lo que decide una persona",
-    what: "El patrón señala y no puede fallar. Si es un tic depende de qué está haciendo la frase, así que cada uno trae la versión legítima con la que no hay que confundirlo.",
+    head: "Los decide una persona",
+    what: "El patrón señala y no decide. Si es un tic depende de qué está haciendo la frase, así que cada uno trae al lado la versión legítima con la que se confunde.",
   },
   RHYTHM: {
     label: "Ritmo",
-    head: "La forma de la página",
-    what: "Se mide sobre prosa corrida. Un encabezado no tiene ritmo, y contarlo arrastra todos los números hacia corto.",
+    head: "La forma de las frases",
+    what: "Cuenta párrafos y citas, nada más. Un encabezado no tiene ritmo, y contarlo arrastra todos los números hacia corto.",
   },
 };
