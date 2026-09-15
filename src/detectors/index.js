@@ -34,6 +34,8 @@ import performativeHumility from "./performative-humility.js";
 import stackedSuperlative from "./stacked-superlative.js";
 import hedges from "./hedges.js";
 import negatedEcho from "./negated-echo.js";
+import negativePunch from "./negative-punch.js";
+import unnamedCrowd from "./unnamed-crowd.js";
 import corporateMetaphor from "./corporate-metaphor.js";
 import peninsularSpanish from "./peninsular-spanish.js";
 import englishCalque from "./english-calque.js";
@@ -79,6 +81,8 @@ export const DETECTORS = [
   parallelSubjectMirror,
   hedges,
   negatedEcho,
+  negativePunch,
+  unnamedCrowd,
   corporateMetaphor,
   peninsularSpanish,
   englishCalque,

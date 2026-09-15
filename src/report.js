@@ -117,6 +117,6 @@ export class Report {
 
   footer(failures) {
     if (this.brief && !failures) return;
-    this.write(`\n${this.#c(BOLD, failures ? `${failures} over budget` : "all under budget")}\n`);
+    this.write(`\n${this.#c(BOLD, failures ? `${failures} failing` : "nothing failing")}\n`);
   }
 }

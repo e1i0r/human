@@ -108,7 +108,7 @@ general-purpose subagent with this, filling in the file and what the piece is:
 > script. Tu trabajo es leerlo de arriba abajo como alguien que llega por
 > primera vez.
 >
-> Reporta solo estas cinco cosas, y solo donde de verdad ocurran:
+> Reporta solo estas nueve cosas, y solo donde de verdad ocurran:
 >
 > 1. **Dónde tropiezas.** Una frase que tuviste que releer. Cita la frase y di
 >    qué te hizo parar.
@@ -118,17 +118,42 @@ general-purpose subagent with this, filling in the file and what the piece is:
 >    apunta a algo poco claro.
 > 4. **Qué contradicción encuentras.** Un número o una afirmación que no cuadra
 >    con otra parte.
-> 5. **Qué te suena a escrito y no a dicho.** Una frase que nadie diría en voz
->    alta. Cita y di cómo la dirías tú.
+> 5. **Qué frase está armada para sonar.** Tres moldes concretos. Afirmación,
+>    dos puntos, y tres cosas donde la tercera es más abstracta que las dos
+>    primeras. La cláusula final que explica el porqué, puesta ahí para rematar.
+>    El encabezado que es una frase con remate en vez de una etiqueta. Cita la
+>    frase y escríbela plana.
+> 6. **Qué se repite a lo largo del texto.** La misma forma de frase o de
+>    encabezado tres veces o más. También la misma familia de palabras suelta
+>    por toda la página, una vez por sección: "sólo", "solos", "solas". Cita
+>    las tres apariciones.
+> 7. **Qué frase existe sólo para montar la siguiente.** La primera mitad no
+>    aporta nada por sí sola y está ahí para que la segunda caiga bien: "Un hook
+>    corre solo, sin que te acuerdes". La versión con "pero" es la misma cosa:
+>    "cambia la raya, pero la negación no". Cita el par y escribe sólo la parte
+>    que carga el dato.
+> 8. **Qué promete el encabezado que el cuerpo no entrega.** El título anuncia
+>    una cuenta o una categoría ("Los dos límites", "Tres grupos") y el texto de
+>    abajo nunca los nombra como tales. Di qué esperabas encontrar y qué
+>    encontraste.
+> 9. **Quién habla.** Lo escribió quien hizo la cosa, y suena a un tercero
+>    contándola: "hay que reescribirla", "se recomienda", "el usuario debe".
+>    Cita la frase y escríbela como se la dirías a alguien de frente.
 >
 > Para cada hallazgo: la frase exacta entre comillas, una línea de por qué te
 > hizo parar, y cómo lo dirías. Si una categoría está limpia, omítela entera. No
 > resumas, no elogies, no des veredicto general, no listes lo que está bien.
 
-The five categories are doing the work. A general "does this read as AI?" comes
+The nine categories are doing the work. A general "does this read as AI?" comes
 back with style notes the counting already covers, and a request for a verdict
 comes back with a verdict. Asking where a reader stopped gets the places a
 reader stopped.
+
+Five through nine came from a person, not from a counter. Reading the same landing,
+he pointed at three sentences in a row that every detector had passed, and all
+three were built the same way: a clause at the end doing rhetoric instead of
+carrying information. The author of those sentences could not see it, which is
+the whole argument for handing the file to somebody else.
 
 **Then re-run the counts.** Fixing thirty findings introduced six new tells on
 that page: a deictic pivot, two polyptotons, a parallel-subject mirror, an
@@ -160,8 +185,14 @@ was written for a pattern and the pattern left in the page it was found on.
 A report on its own changes nothing. The cycle is:
 
 ```
-run  →  fix  →  run again  →  until everything is under budget
+run  →  fix  →  run again  →  cold read  →  fix  →  run again  →  until it holds
 ```
+
+**Every fix is a new draft, so check it like one.** A correction comes from the
+same hand that wrote the tell, and it arrives with more pressure to sound right
+than the original had. Run the counts again over the whole file, and read your
+new sentences against the seven cold-read categories, before you call anything
+clean. Never report a pass on a round whose own fixes nobody checked.
 
 **The program accepts, the model fixes.** Rewriting takes judgement and a regex
 has none. Deciding whether it is now clean takes counting and a writer has none
@@ -172,9 +203,28 @@ writes new tells while it removes old ones, and they are harder to see because
 they feel like corrections. Most third-pass hits were written by the second-pass
 fix for something else.
 
+**The counter cannot check the fix you just wrote.** Categories five, six and
+seven of the cold read sit outside every detector, so a rewrite that clears a
+counted tell can add an uncounted one and the report still comes back at zero.
+After each round, read your own new sentences against those three categories,
+and hand the file to the cold reader again before it ships. On this page, "un
+hook corre solo, sin que te acuerdes" got replaced by a sentence carrying two
+fresh flourishes, and the counts never moved.
+
+**Change the flagged words and leave the rest of the sentence alone.** A
+rewrite done to fix one thing drops whatever already worked, and the next round
+puts it back, and six rounds later the line is worse than round two was. Keep
+the corrections as a list and apply them on top of the last version somebody
+approved, cumulatively, byte for byte everywhere they do not reach.
+
 **Scope each fix to the flagged sentence and its neighbour.** Rewriting the
 whole paragraph every round drifts the meaning, and by the fourth round the text
 says something the author never approved.
+
+**If you already explained it clearly in conversation, that is the text.** The
+version written to answer a question carries the frame first, then the items,
+numbered. Turning it into flowing prose for the page is what loses the reader,
+and the round after that is spent putting the numbers back. Paste what worked.
 
 **Stop at three rounds.** Past three you are over-editing into choppy, voiceless
 prose. Whatever is left, report it with its count and let the author decide.

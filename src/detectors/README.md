@@ -2,7 +2,7 @@
 
 # detectors
 
-32 detectors, one to a file. 6 that a regex settles alone (`HARD`) and 26 it can only point at (`REVIEW`).
+34 detectors, one to a file. 6 that a regex settles alone (`HARD`) and 28 it can only point at (`REVIEW`).
 
 Generated from the comments by `scripts/detectors-readme.mjs`. Edit the file, not this.
 
@@ -35,6 +35,8 @@ Generated from the comments by `scripts/detectors-readme.mjs`. Edit the file, no
 | [`parallel-subject-mirror`](#parallel-subject-mirror) | REVIEW | es/en | Two consecutive sentences opening on the same determiner with a different |
 | [`hedges`](#hedges) | REVIEW | es/en | generalmente · por lo general · suele + verbo · en muchos casos · quizás · |
 | [`negated-echo`](#negated-echo) | REVIEW | es/en | A sentence that lands, then hangs a short negative clause off the end which |
+| [`negative-punch`](#negative-punch) | REVIEW | es/en | A short sentence that opens or closes a paragraph and says what something |
+| [`unnamed-crowd`](#unnamed-crowd) | REVIEW | es/en | A claim about what an unnamed group does or fails to do, used as the ground |
 | [`corporate-metaphor`](#corporate-metaphor) | REVIEW | es/en | A consulting-deck word standing where a mechanism belongs. |
 | [`peninsular-spanish`](#peninsular-spanish) | REVIEW | es | Peninsular vocabulary in text written for Latin America. The usual way it |
 | [`english-calque`](#english-calque) | REVIEW | es | An English idiom translated word for word. It parses, it means something, |
@@ -642,6 +644,65 @@ and the tail exists to close it with a beat. It survives editing because
 the symmetry reads as precision.
 
 > printed beside the count: a negation carrying its own half is not this
+
+
+### negative-punch
+
+`negative-punch.js` · **REVIEW** · es/en
+
+**Detects.** A short sentence that opens or closes a paragraph and says what something
+does not do: "Tampoco lee.", "Un hook no.", "Nada de esto sale del
+navegador."
+
+**Fix.** Say what the thing does. "Cuenta, pero lee no" becomes "Cuenta patrones".
+"Nada de esto sale del navegador" becomes "Todo se queda en tu navegador".
+
+```
+before   Tampoco lee. Nunca te agarra un número que contradice a otro.
+after    Cuenta, y por eso un número que contradice a otro se le pasa entero.
+```
+
+**Not this.** A negation that carries the fact itself, where the positive version would
+say something else: "El sexto no se arregla solo." Nor a long sentence,
+which is doing work rather than landing a beat.
+
+**Why.** Defining a thing by its absence sounds precise and costs the reader an
+extra step: they build the positive claim themselves. Generated prose
+reaches for it at the two positions where a paragraph wants force, the
+first sentence and the last, and a page picks up a dozen of them without
+the writer noticing. Count them and the habit shows.
+
+> printed beside the count: a negation carrying the fact itself is not this
+
+
+### unnamed-crowd
+
+`unnamed-crowd.js` · **REVIEW** · es/en
+
+**Detects.** A claim about what an unnamed group does or fails to do, used as the ground
+for the point: "la parte que casi nadie revisa", "lo que todo el mundo
+hace", "most people never check this".
+
+**Fix.** Say the thing on its own, or name who. "La parte que casi nadie revisa"
+becomes "el ritmo de las frases". "Nadie mide esto" becomes "lo medí en
+veintinueve piezas y salió tres veces".
+
+```
+before   Aparte te mide el ritmo, que es la parte que casi nadie revisa.
+after    Aparte te mide el ritmo de las frases.
+```
+
+**Not this.** A group somebody counted or named: "los seis lectores que la probaron", "el
+equipo de soporte". Nor "nadie" as the object of a real action, as in "no se
+lo mandé a nadie", where the sentence reports what happened rather than what
+a crowd habitually does.
+
+**Why.** The writer invents a crowd and wins against it. The claim costs nothing to
+make, nobody can check it, and it flatters whoever is reading, so generated
+prose reaches for it whenever a sentence needs weight it has not earned.
+Sales copy carries the same habit, which is why the two read alike.
+
+> printed beside the count: a group somebody counted or named is not this
 
 
 ### corporate-metaphor

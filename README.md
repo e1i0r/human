@@ -41,7 +41,7 @@ banned vocabulary, negation framing, AI transitions. **Twenty-six REVIEW**, whic
 a pattern points at and cannot rule on, each carrying the legitimate version it
 gets confused with. Four of the REVIEW
 ones apply to Spanish only. Separately, **four rhythm measures** run over the
-prose as a whole, and those are not detectors. All 32 are documented in
+prose as a whole, and those are not detectors. All 34 are documented in
 [`src/detectors/`](src/detectors/README.md).
 
 There is a browser editor at [human.e1i0.com/app](https://human.e1i0.com/app),
@@ -108,7 +108,7 @@ counts run again, because fixing what it finds writes new tells.
 
 ## Tests
 
-`npm test`. Every detector fires against fixtures built to trip all thirty-two,
+`npm test`. Every detector fires against fixtures built to trip all thirty-four,
 every hit is compared with its line and its text rather than its count, and the
 hooks have to stay silent on a clean page.
 
