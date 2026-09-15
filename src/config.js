@@ -60,6 +60,10 @@ export const DEFAULTS = {
     members: [3, "three is cadence; more is an inventory"],
     max_member_words: [6, "a longer member carries content rather than beat"],
   },
+  "negative-punch": {
+    min_words: [2, "one word is an interjection, not a sentence doing this"],
+    max_words: [9, "past this the sentence carries content, not a beat"],
+  },
   "negated-echo": {
     landed: [12, "words before the tail; below this the sentence is the tail"],
     max_tail_words: [6, "a longer tail is a clause, not a closing beat"],

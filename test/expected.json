@@ -379,6 +379,42 @@
     ]
    },
    {
+    "id": "negative-punch",
+    "skipped": false,
+    "over": true,
+    "budget": 0,
+    "hits": [
+     [
+      16,
+      "Nunca de un modelo."
+     ],
+     [
+      16,
+      "Sin fuente no entra."
+     ]
+    ]
+   },
+   {
+    "id": "unnamed-crowd",
+    "skipped": false,
+    "over": true,
+    "budget": 0,
+    "hits": [
+     [
+      8,
+      "El problema es que nadie mide."
+     ],
+     [
+      25,
+      "Nadie mira."
+     ],
+     [
+      25,
+      "Nadie revisa."
+     ]
+    ]
+   },
+   {
     "id": "corporate-metaphor",
     "skipped": false,
     "over": true,
@@ -881,6 +917,54 @@
      [
       47,
       "The report tells you what usually ships alongside these files and this time it did not."
+     ]
+    ]
+   },
+   {
+    "id": "negative-punch",
+    "skipped": false,
+    "over": true,
+    "budget": 0,
+    "hits": [
+     [
+      16,
+      "Nobody mines."
+     ],
+     [
+      42,
+      "Without warning."
+     ],
+     [
+      42,
+      "Never from a model."
+     ]
+    ]
+   },
+   {
+    "id": "unnamed-crowd",
+    "skipped": false,
+    "over": true,
+    "budget": 0,
+    "hits": [
+     [
+      8,
+      "The real question is nobody measures."
+     ],
+     [
+      16,
+      "Nobody mines."
+     ],
+     [
+      16,
+      "Nobody reviews."
+     ],
+     [
+      39,
+      "The point is this: nobody reads the report twice after the first wall of noise lands on them, which is the thing every one of these tools gets wrong."
+     ],
+     [
+      44,
+      "The rule that the rule about rules governs is a rule nobody wrote down, and the rule that governs that one is a rule about rules about rules."
      ]
     ]
    },

@@ -228,6 +228,24 @@ export const ES = {
     not:
       "Incertidumbre real enunciada con sus condiciones, que es honestidad y no un suavizante.",
   },
+  "negative-punch": {
+    label: "negación de remate",
+    what:
+      "Una frase corta que abre o cierra el párrafo diciendo lo que algo no hace: \"Tampoco lee.\", \"Un hook no.\"",
+    fix:
+      "Di lo que la cosa sí hace. \"Nada de esto sale del navegador\" se vuelve \"Todo se queda en tu navegador\".",
+    not:
+      "Una negación que carga el dato, donde la versión positiva diría otra cosa: \"El sexto no se arregla solo.\" Tampoco una frase larga, que está trabajando en vez de rematar.",
+  },
+  "unnamed-crowd": {
+    label: "el nadie genérico",
+    what:
+      "Una afirmación sobre lo que hace o deja de hacer un grupo sin nombre, usada como base del argumento: \"la parte que casi nadie revisa\".",
+    fix:
+      "Di la cosa sola, o nombra a quién. \"La parte que casi nadie revisa\" se vuelve \"el ritmo de las frases\".",
+    not:
+      "Un grupo que alguien contó o nombró: \"los seis lectores que la probaron\". Tampoco \"nadie\" como objeto de algo que pasó de verdad, como \"no se lo mandé a nadie\".",
+  },
   "negated-echo": {
     label: "eco negado",
     what: "Una frase que ya cerró y le cuelgan una coletilla negativa que repite lo que acaba de decir.",
@@ -344,6 +362,9 @@ export const UI_ES = {
   asks: "pide",
   proseSentences: "frases de prosa:",
   overBudget: "sobre el umbral",
+  failure: "fallo",
+  failures: "fallos",
+  noFailures: "sin fallos",
   exitWould: "el CLI saldría con ese código",
   exitZero: "el CLI saldría con 0",
   toDecide: "para decidir",

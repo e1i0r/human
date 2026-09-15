@@ -20,12 +20,12 @@ Tres niveles, y la división decide qué te toca a ti.
 
 - **HARD**, seis. El patrón lo zanja y no hay lectura que lo cambie. Pasarse
   rompe la corrida. Arréglalos.
-- **REVIEW**, veintiséis. El patrón señala y no puede decidir. Cada uno trae
+- **REVIEW**, veintiocho. El patrón señala y no puede decidir. Cada uno trae
   al lado la versión legítima con la que se confunde: léela antes de tocar la
   frase. Nunca fallan una corrida.
 - **RITMO**, cuatro medidas sobre párrafos y citas.
 
-Cinco de los seis duros tienen arreglo mecánico. Los otros veintisiete hay que
+Cinco de los seis duros tienen arreglo mecánico. Los otros veintinueve hay que
 reescribirlos, y reescribir uno exige saber qué quiso decir la frase.
 
 Vuelve a correrlo sobre el documento entero después de cada pasada de arreglos,
@@ -51,7 +51,7 @@ escribió el borrador, y la skill trae el prompt para despacharlo.
 ## Documentos
 
 - [La skill](/skill.md), con el procedimiento y el prompt de la lectura fría
-- [Los 32 detectores](/detectors.md), qué busca cada uno y con qué no confundirlo
+- [Los 34 detectores](/detectors.md), qué busca cada uno y con qué no confundirlo
 - [Esta página en markdown](/index.md)
 - [El repositorio](https://github.com/e1i0r/human)
 - [El paquete](https://www.npmjs.com/package/@e1i0/human)
