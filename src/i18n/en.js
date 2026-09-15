@@ -56,7 +56,7 @@ export const UI_EN = {
   markdown: "Markdown",
   register: "Register",
   none: "none",
-  privacy: "The text is counted in your browser and stays there. No server receives it.",
+  privacy: "The text never leaves your browser and isn't used for anything else.",
   clearTitle: "The draft is kept in this browser so it is still here when you come back",
   clear: "Clear the draft",
   undo: "Undo",
