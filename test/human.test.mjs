@@ -301,6 +301,31 @@ test("es: the four rhythm measures have Spanish too", () => {
   assert.deepEqual(missing, [], `sin español: ${missing.join(", ")}`);
 });
 
+test("hostile input does not hang the counter", () => {
+  // The browser editor counts on every keystroke, so a pattern that backtracks
+  // does not read as slow: the tab freezes and the page looks broken. Two of
+  // these used to. A line of spaces followed by a word made the trailing-space
+  // trim quadratic, sixty-seven seconds at two hundred thousand characters, and
+  // unclosed brackets made every one of them scan to the end of the line.
+  const cases = {
+    "spaces then a word": " ".repeat(200_000) + "Lo que es.",
+    "tabs then a word": "\t".repeat(200_000) + "Lo que es.",
+    "unclosed brackets": "[".repeat(120_000),
+    "unclosed backticks": "`".repeat(120_000),
+    "one enormous sentence": `Lo que hace ${"palabra ".repeat(30_000)}es esto.`,
+    "no whitespace at all": "a".repeat(300_000),
+    "combining marks": "́".repeat(100_000) + " Lo que es.",
+  };
+  for (const [what, text] of Object.entries(cases)) {
+    for (const ext of ["x.md", "x.html"]) {
+      const started = Date.now();
+      check(text, ext);
+      const ms = Date.now() - started;
+      assert.ok(ms < 4000, `${what} (${ext}) took ${ms}ms`);
+    }
+  }
+});
+
 test("nothing claims a number of detectors that is not the number", () => {
   // The landing said "thirty-two" three times and its own cards added to
   // thirty-six, because the four rhythm measures were counted as detectors.

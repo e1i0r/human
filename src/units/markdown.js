@@ -11,7 +11,15 @@ const HEADING = /^\s*#/;
 const BULLET = /^\s*(?:[-*+]|\d+\.)\s+/;
 const RULE = /^\s*(?:-{3,}|\*{3,}|_{3,})\s*$/;
 const TABLE_SEP = /^:?-{2,}:?$/;
-const INLINE = /`([^`]*)`|\*\*([^*]*)\*\*|\*([^*]*)\*|\[([^\]]*)\]\([^)]*\)/g;
+// The lengths are bounded on purpose. Unbounded, a line of a hundred thousand
+// unclosed brackets makes each one scan to the end of the line looking for its
+// pair, which is quadratic and took twenty-one seconds. Five hundred characters
+// is past any real link text or code span, and it caps the work per opener.
+const INLINE = new RegExp(
+  "`([^`]{0,500})`"
+  + "|\\*\\*([^*]{0,500})\\*\\*"
+  + "|\\*([^*]{0,500})\\*"
+  + "|\\[([^\\]]{0,500})\\]\\([^)]{0,500}\\)", "g");
 
 const blank = (m) => "\n".repeat((m.match(/\n/g) || []).length);
 
@@ -36,7 +44,12 @@ export function read(src) {
 
   src.split("\n").forEach((raw, i) => {
     const n = i + 1;
-    const line = raw.replace(/\s+$/, "");
+    // trimEnd and not /\s+$/. A line of two hundred thousand spaces followed by
+    // a word makes that pattern backtrack once per starting position, which is
+    // quadratic: forty thousand characters took two and a half seconds, two
+    // hundred thousand took sixty-seven. In the browser editor, where this runs
+    // on every keystroke, one paste freezes the tab.
+    const line = raw.trimEnd();
     if (!line.trim()) {
       flush();
     } else if (HEADING.test(line)) {
