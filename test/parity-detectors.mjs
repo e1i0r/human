@@ -43,7 +43,11 @@ function fromPython(file) {
 
 // Defaults, so a project's .tells.toml cannot make the two sides disagree for
 // a reason that is not a bug. Budgets are the CLI's problem, not the detector's.
-const CFG = { "em-dash": { per_words: 300 } };
+const CFG = {
+  "em-dash": { per_words: 300 },
+  "subjectless-fragment": { max_words: 6 },
+  "deictic-pivot": { max_words: 8 },
+};
 
 let failures = 0;
 

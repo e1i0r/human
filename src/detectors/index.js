@@ -18,6 +18,27 @@ import bannedVocabulary from "./banned-vocabulary.js";
 import negationFraming from "./negation-framing.js";
 import aiTransition from "./ai-transition.js";
 
+// REVIEW: a regex points at it; a person rules on it.
+import subjectlessFragment from "./subjectless-fragment.js";
+import agentlessPassive from "./agentless-passive.js";
+import pseudoCleft from "./pseudo-cleft.js";
+import midSentenceColon from "./mid-sentence-colon.js";
+import deicticPivot from "./deictic-pivot.js";
+import significance from "./significance.js";
+import stackedAppositive from "./stacked-appositive.js";
+import thesisOpenerMissing from "./pattern-announcement.js";
+import turnsOut from "./turns-out.js";
+import participialSetup from "./participial-setup.js";
+import performativeHumility from "./performative-humility.js";
+import stackedSuperlative from "./stacked-superlative.js";
+import hedges from "./hedges.js";
+import corporateMetaphor from "./corporate-metaphor.js";
+import peninsularSpanish from "./peninsular-spanish.js";
+import englishCalque from "./english-calque.js";
+import nominalizedParticle from "./nominalized-particle.js";
+import elevatedRegister from "./elevated-register.js";
+
+
 /** @type {import("./base.js").Detector[]} */
 export const DETECTORS = [
   emDash,
@@ -26,6 +47,25 @@ export const DETECTORS = [
   bannedVocabulary,
   negationFraming,
   aiTransition,
+
+  subjectlessFragment,
+  agentlessPassive,
+  pseudoCleft,
+  midSentenceColon,
+  deicticPivot,
+  significance,
+  stackedAppositive,
+  thesisOpenerMissing,
+  turnsOut,
+  participialSetup,
+  performativeHumility,
+  stackedSuperlative,
+  hedges,
+  corporateMetaphor,
+  peninsularSpanish,
+  englishCalque,
+  nominalizedParticle,
+  elevatedRegister,
 ];
 
 /** @param {string} id */
