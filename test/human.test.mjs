@@ -18,8 +18,10 @@ import { check, DETECTORS } from "../src/index.js";
 import { defaults, merge } from "../src/config.js";
 import { declared, load, names } from "../src/registers.js";
 import { parse } from "../src/toml.js";
+import { ES, RHYTHM_ES } from "../src/i18n/es.js";
 import { isProse, reportOn } from "../hook/common.js";
 import { extract, split } from "../src/units/index.js";
+import { measure } from "../src/rhythm/index.js";
 
 const HERE = import.meta.dirname;
 const ROOT = dirname(HERE);
@@ -175,6 +177,29 @@ test("skill: the four fields a fixer needs survive the generation", () => {
       assert.match(section, /\*\*Not this\.\*\* \S/, `${d.id}: no legitimate version`);
     }
   }
+});
+
+test("es: every detector says in Spanish what it looks for", () => {
+  // The browser editor is a Spanish page and "banned vocabulary" tells a first
+  // reader nothing. A row nobody understands is a row nobody acts on, and then
+  // the whole report is decoration.
+  const missing = DETECTORS.filter((d) => !ES[d.id]).map((d) => d.id);
+  assert.deepEqual(missing, [], `sin español: ${missing.join(", ")}`);
+  const extra = Object.keys(ES).filter((id) => !DETECTORS.some((d) => d.id === id));
+  assert.deepEqual(extra, [], `español de detectores que no existen: ${extra.join(", ")}`);
+  for (const [id, e] of Object.entries(ES)) {
+    assert.ok(e.label?.length, `${id}: sin etiqueta`);
+    assert.ok(e.what?.length > 40, `${id}: la explicación no dice lo suficiente`);
+    assert.ok(e.fix?.length > 15, `${id}: sin arreglo`);
+    assert.ok(e.not?.length > 15, `${id}: no dice con qué no confundirlo`);
+  }
+});
+
+test("es: the four rhythm measures have Spanish too", () => {
+  const names = measure(extract("Una frase corta. Y otra bastante mas larga que la anterior, con sus palabras.", "a.md"), defaults())
+    .rows.map((r) => r.name);
+  const missing = names.filter((n) => !RHYTHM_ES[n]);
+  assert.deepEqual(missing, [], `sin español: ${missing.join(", ")}`);
 });
 
 test("registers: each one says what it is, what it is for, and how it sounds", () => {
