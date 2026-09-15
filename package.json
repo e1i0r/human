@@ -1,6 +1,6 @@
 {
   "name": "@e1i0/human",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Count the AI tells in a draft and fail when one is over budget. Spanish and English.",
   "type": "module",
   "bin": {
