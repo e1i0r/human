@@ -301,21 +301,18 @@ export const RHYTHM_ES = {
   },
 };
 
-/** Los tres grupos, con lo que significa cada uno. */
+/** Los tres grupos. La etiqueta va en la pestaña y lo demás debajo. */
 export const GROUPS_ES = {
   HARD: {
     label: "Duros",
-    head: "Un patrón los zanja solo",
     what: "Una raya es una raya y ninguna lectura cambia eso. Pasarse del presupuesto rompe la corrida, y el código de salida cuenta cuántos se pasaron.",
   },
   REVIEW: {
     label: "A criterio",
-    head: "Los decide una persona",
     what: "El patrón señala y no decide. Si es un tic depende de qué está haciendo la frase, así que cada uno trae al lado la versión legítima con la que se confunde.",
   },
   RHYTHM: {
     label: "Ritmo",
-    head: "La forma de las frases",
     what: "Cuenta párrafos y citas, nada más. Un encabezado no tiene ritmo, y contarlo arrastra todos los números hacia corto.",
   },
 };
