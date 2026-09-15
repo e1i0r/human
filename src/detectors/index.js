@@ -33,6 +33,7 @@ import participialSetup from "./participial-setup.js";
 import performativeHumility from "./performative-humility.js";
 import stackedSuperlative from "./stacked-superlative.js";
 import hedges from "./hedges.js";
+import negatedEcho from "./negated-echo.js";
 import corporateMetaphor from "./corporate-metaphor.js";
 import peninsularSpanish from "./peninsular-spanish.js";
 import englishCalque from "./english-calque.js";
@@ -46,7 +47,6 @@ import polyptoton from "./polyptoton.js";
 import aphorismCloser from "./aphorism-closer.js";
 import tricolon from "./tricolon.js";
 import parallelSubjectMirror from "./parallel-subject-mirror.js";
-import negatedEcho from "./negated-echo.js";
 
 
 /** @type {import("./base.js").Detector[]} */
@@ -76,14 +76,14 @@ export const DETECTORS = [
   participialSetup,
   performativeHumility,
   stackedSuperlative,
+  parallelSubjectMirror,
   hedges,
+  negatedEcho,
   corporateMetaphor,
   peninsularSpanish,
   englishCalque,
   nominalizedParticle,
-  parallelSubjectMirror,
   elevatedRegister,
-  negatedEcho,
 ];
 
 /** @param {string} id */
