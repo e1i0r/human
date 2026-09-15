@@ -44,8 +44,8 @@ human --register=sales
 
 ## Lo que no hace
 
-No lee. Nunca encuentra un número que contradice a otro número, ni un término
-usado noventa líneas antes de explicarse. Eso lo encuentra un lector que no
+No lee, así que nunca encuentra un número que contradice a otro número ni un
+término usado noventa líneas antes de explicarse. Eso lo encuentra un lector que no
 escribió el borrador, y la skill trae el prompt para despacharlo.
 
 ## Documentos

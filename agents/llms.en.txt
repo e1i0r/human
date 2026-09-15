@@ -43,8 +43,8 @@ human --register=sales
 
 ## What it does not do
 
-It does not read. It never catches a number that contradicts another number, or
-a term used ninety lines before it is explained. A reader who did not write the
+It does not read, so it never catches a number that contradicts another number,
+or a term used ninety lines before it is explained. A reader who did not write the
 draft catches those, and the skill carries the prompt for dispatching one.
 
 ## Documents

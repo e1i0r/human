@@ -6,8 +6,8 @@ Markdown and HTML, Spanish and English. Node 20+, no dependencies.
 
 Every other tool in this space asks a model to read a draft and grade it. A
 model grading its own prose finds nothing, because the prose sits exactly where
-that model would have put it. So this does not read. It takes one pattern, looks
-for it in every unit of the document, and prints the count, zeros included.
+that model would have put it. So instead of reading it takes one pattern, looks for it
+in every unit of the document, and prints the count, zeros included.
 
 ```bash
 npm install -g @e1i0/human

@@ -319,6 +319,10 @@ export const GROUPS_ES = {
 
 /** Lo que la propia página dice, fuera del catálogo. */
 export const UI_ES = {
+  emptyTitle: "Todavía no hay nada que contar",
+  emptyWhat: "Pega un borrador y cada patrón aparece con su cuenta, incluidos los que salen en cero. Los tramos contados quedan subrayados en el texto.",
+  tryExample: "Probar con un ejemplo",
+  example: "Lo que hace este sistema es coordinar procesos — y además, lo hace bien.\n\nNo es una herramienta más, es una plataforma; robusta y comprehensiva. Es importante notar que esto resulta crucial para el equipo.\n\nAdemás, el equipo trabaja. Nadie mira. Nadie mide. Nadie lo nota.\n\nEl reporte te dice qué suele venir junto con estos archivos y esta vez no vino.",
   title: "Pega un borrador y mira qué cuenta",
   note: "El mismo contador que corre el CLI.",
   format: "Formato",
