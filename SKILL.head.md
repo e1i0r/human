@@ -13,7 +13,7 @@ description: >
 
 # human
 
-Sanitary linter for prose. Counts AI tells, names them, and fails when one is over budget.
+Linter of AI patterns. Counts them, names them, and fails when one is over budget. Every finding comes with its fix.
 
 ## Mechanical cleanup, human writing
 
