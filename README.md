@@ -10,12 +10,18 @@ that model would have put it. So this does not read. A detector takes one
 pattern, scans every unit for it, prints the count, and the zeros print too.
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/e1i0r/human/main/install.sh | bash
+npm install -g @e1i0/human
 human post.md
 ```
 
-That clones into `~/.claude/skills/human`, so an agent gets the skill along with
-the commands, and offers to install the hooks on the way out.
+Or, to get the skill and the hooks along with the commands:
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/e1i0r/human/main/install.sh | bash
+```
+
+That clones into `~/.claude/skills/human`, links the commands from the checkout,
+and offers the hooks on the way out.
 
 ```
 post.md   77 units · 100 sentences · 1018 words
