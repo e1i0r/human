@@ -1,0 +1,57 @@
+# human
+
+> Cuenta los tics de IA en un borrador y falla cuando uno se pasa del umbral.
+> Toma un patrón, lo busca en cada unidad del documento, e imprime el número.
+> Treinta y dos patrones, markdown y HTML, español e inglés.
+
+## Cómo correrlo
+
+```
+npm install -g @e1i0/human
+human borrador.md
+```
+
+El código de salida es la cantidad de umbrales excedidos, así que sirve en un
+hook de pre-commit o en CI sin envolverlo en nada.
+
+## Qué hacer con el reporte
+
+Tres niveles, y la división decide qué te toca a ti.
+
+- **HARD**, seis. El patrón lo zanja y no hay lectura que lo cambie. Pasarse
+  rompe la corrida. Arréglalos.
+- **REVIEW**, veintiséis. El patrón señala y no puede decidir. Cada uno trae
+  al lado la versión legítima con la que se confunde: léela antes de tocar la
+  frase. Nunca fallan una corrida.
+- **RITMO**, cuatro medidas sobre párrafos y citas.
+
+Cinco de los treinta y dos tienen arreglo mecánico. Para los otros veintisiete
+hay que reescribir, y reescribir uno exige saber qué quiso decir la frase.
+
+Vuelve a correrlo sobre el documento entero después de cada pasada de arreglos,
+nunca sólo sobre las líneas que tocaste. Un arreglo escribe tics nuevos mientras
+quita los viejos.
+
+## Antes de escribir
+
+Declara para qué es el texto. La mitad de lo que suena a generado es una palabra
+que pertenece a otro tipo de escritura.
+
+```
+human --registers
+human --register=sales
+```
+
+## Lo que no hace
+
+No lee. Nunca encuentra un número que contradice a otro número, ni un término
+usado noventa líneas antes de explicarse. Eso lo encuentra un lector que no
+escribió el borrador, y la skill trae el prompt para despacharlo.
+
+## Documentos
+
+- [La skill](/skill.md), con el procedimiento y el prompt de la lectura fría
+- [Los 32 detectores](/detectors.md), qué busca cada uno y con qué no confundirlo
+- [Esta página en markdown](/index.md)
+- [El repositorio](https://github.com/e1i0r/human)
+- [El paquete](https://www.npmjs.com/package/@e1i0/human)

@@ -301,6 +301,23 @@ test("es: the four rhythm measures have Spanish too", () => {
   assert.deepEqual(missing, [], `sin español: ${missing.join(", ")}`);
 });
 
+test("agents: llms.txt says what the tool actually does", () => {
+  // It is not a list of links. An agent that follows one ends up scraping a
+  // three-column landing page, which goes badly. What it needs is the command,
+  // what the exit code means, and which findings it can fix on its own.
+  for (const lang of ["es", "en"]) {
+    const text = readFileSync(join(ROOT, "agents", `llms.${lang}.txt`), "utf8");
+    assert.match(text, /npm install -g @e1i0\/human/, `${lang}: no dice cómo instalarlo`);
+    assert.match(text, /human [a-z]+\.md/, `${lang}: no dice cómo correrlo`);
+    for (const level of ["HARD", "REVIEW"]) {
+      assert.ok(text.includes(level), `${lang}: no nombra ${level}`);
+    }
+    // The count of detectors is the number that goes stale first.
+    assert.ok(text.includes(String(DETECTORS.length))
+      || /treinta y dos|thirty-two/i.test(text), `${lang}: la cuenta de detectores no cuadra`);
+  }
+});
+
 test("i18n: the two languages say the same things", () => {
   // A page half in the reader's language and half in the other is worse than
   // one language honestly, and a missing key shows up as an empty label that

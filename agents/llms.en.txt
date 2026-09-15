@@ -1,0 +1,56 @@
+# human
+
+> Counts the AI tells in a draft and fails when one is over budget. It takes one
+> pattern, looks for it in every unit of the document, and prints the number.
+> Thirty-two patterns, markdown and HTML, Spanish and English.
+
+## How to run it
+
+```
+npm install -g @e1i0/human
+human draft.md
+```
+
+Exit code is the number of budgets exceeded, so it drops into a pre-commit hook
+or a CI job with nothing wrapped around it.
+
+## What to do with the report
+
+Three levels, and the split decides what is yours to do.
+
+- **HARD**, six of them. The pattern settles it and no reading changes that.
+  Over budget breaks the run. Fix them.
+- **REVIEW**, twenty-six. The pattern points and cannot rule. Each one carries
+  beside it the legitimate version it gets confused with: read that before
+  touching the sentence. These never fail a run.
+- **RHYTHM**, four measures over paragraphs and quotes.
+
+Five of the thirty-two have a mechanical fix. The other twenty-seven need
+rewriting, and rewriting one needs knowing what the sentence meant.
+
+Re-run over the whole document after each pass of fixes, never only the lines
+you touched. A fix writes new tells while it removes old ones.
+
+## Before writing
+
+Declare what the text is for. Half of what reads as generated is a word that
+belongs to a different kind of writing.
+
+```
+human --registers
+human --register=sales
+```
+
+## What it does not do
+
+It does not read. It never catches a number that contradicts another number, or
+a term used ninety lines before it is explained. A reader who did not write the
+draft catches those, and the skill carries the prompt for dispatching one.
+
+## Documents
+
+- [The skill](/en/skill.md), with the procedure and the cold-read prompt
+- [The 32 detectors](/en/detectors.md), what each looks for and what it is not
+- [This page in markdown](/en/index.md)
+- [The repository](https://github.com/e1i0r/human)
+- [The package](https://www.npmjs.com/package/@e1i0/human)

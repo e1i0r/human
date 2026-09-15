@@ -14,6 +14,7 @@
     "./detectors": "./src/detectors/index.js"
   },
   "files": [
+    "agents",
     "src", "bin", "hook", "registers", "SKILL.md", "skills.sh.json",
     "!registers/voice-*.toml"
   ],
