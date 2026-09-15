@@ -6,22 +6,13 @@ Markdown and HTML, Spanish and English. Node 20+, no dependencies.
 
 Every other tool in this space asks a model to read a draft and grade it. A
 model grading its own prose finds nothing, because the prose sits exactly where
-that model would have put it. So this does not read. A detector takes one
-pattern, scans every unit for it, prints the count, and the zeros print too.
+that model would have put it. So this does not read. It takes one pattern, looks
+for it in every unit of the document, and prints the count, zeros included.
 
 ```bash
 npm install -g @e1i0/human
 human post.md
 ```
-
-Or, to get the skill and the hooks along with the commands:
-
-```bash
-curl -fsSL https://raw.githubusercontent.com/e1i0r/human/main/install.sh | bash
-```
-
-That clones into `~/.claude/skills/human`, links the commands from the checkout,
-and offers the hooks on the way out.
 
 ```
 post.md   77 units · 100 sentences · 1018 words
@@ -45,18 +36,15 @@ all under budget
 Exit code is the number of budgets exceeded, so it drops into a pre-commit hook
 or a CI job unchanged. `--only=REVIEW`, `--brief`, `--ignore=quotes.txt`.
 
-## The thirty-two
+**Six HARD**, settled by the pattern: em dashes, semicolons, curly quotes,
+banned vocabulary, negation framing, AI transitions. **Twenty-six REVIEW**, which
+a pattern points at and cannot rule on, each carrying the legitimate version it
+gets confused with. **Four rhythm measures** over running prose. Of the REVIEW
+ones, four run over Spanish only and exist in no other tool. All thirty-two are
+documented in [`src/detectors/`](src/detectors/README.md).
 
-**HARD**, what a regex settles alone: em dashes, semicolons, curly quotes,
-banned vocabulary, negation framing, AI transitions.
-
-**RHYTHM**: sentence-length spread, share in the 10-to-20-word band, whether a
-short sentence exists at all, runs of three same-length sentences in a paragraph.
-
-**REVIEW**, twenty-six a regex points at and cannot rule on, each carrying a
-line saying what the legitimate version looks like. Four are Spanish only and
-exist in no other tool: peninsular vocabulary, English calques, nominalized
-particles, elevated register. `src/detectors/` documents each beside its pattern.
+There is a browser editor at [human.e1i0.com/app](https://human.e1i0.com/app),
+running the same modules with no server behind it.
 
 ## The hooks
 
@@ -65,18 +53,17 @@ skipped before showing a draft, skipped again after fixing what they found, and
 once a detector was written and its own finding left in the page.
 
 ```bash
-human-hooks            # asks first
+curl -fsSL https://raw.githubusercontent.com/e1i0r/human/main/install.sh | bash
 human-hooks --remove   # undoes it
 ```
 
-Three entries in `~/.claude/settings.json`, merged rather than written and
-backed up the first time. The checker runs on the file a Write or an Edit touched. A heredoc rewriting a
-page is a Bash call and that first hook never sees it, so the second one asks
-git what prose the tree changed instead. Neither says anything when there is
-nothing to look at.
-
-The third runs *before* a write and hands over the register (below), once per
-session, because a register read after the draft exists was read too late.
+That clones the skill into `~/.claude/skills/human`, links the commands, and
+offers three entries for `~/.claude/settings.json`, merged rather than written
+and backed up the first time. Before a write it hands over the register, and a
+Write or an Edit gets that file counted. The third asks git what prose the tree
+changed after a Bash call, because a heredoc rewriting a page is one and the
+first hook never sees it. None of them says anything when there is nothing to
+look at.
 
 ## Registers
 
@@ -86,45 +73,37 @@ settles that, because the word is correct.
 
 ```bash
 human --registers
-human --register=sales
+human --register=sales    # and in .human.toml: [write] register = "sales"
 ```
 
-```toml
-[write]
-register = "sales"
-```
-
-Twelve ship. A register marks the rows that cost more there than elsewhere
-without moving a threshold, and the pre-write hook puts its voice in front of
-whoever is drafting, so it steers the writing instead of grading it.
+Twelve ship. A register marks the rows that cost more there without moving a
+threshold, and the pre-write hook puts its voice in front of whoever is drafting.
 
 ## Making it yours
 
-Every threshold here is a judgement somebody made once. `human-calibrate` puts
-measurements of prose you already trust in their place, and writes a
-`.human.toml` read from the nearest directory at or above the file, merged
-root-down so a landing inside a blog keeps the blog's rhythm and sets its own
-register.
+Every threshold here is a judgement somebody made once.
 
 ```bash
 human-calibrate posts/*.md --write .
 human-voice ~/.claude/projects --write=yourname
 ```
 
-The corpus has to be prose nobody edited with this tool, and that rules out most
-of what you have. Your chat history does not go through a model, so `human-voice`
-reads your own messages out of it and writes `registers/voice-yourname.toml`.
-**That file stays on your machine.** It is gitignored, and there is nothing to
-publish since running it against your own history gives you yours.
+`human-calibrate` measures prose you already trust and writes a `.human.toml`,
+read from the nearest directory at or above the file and merged root-down. The
+corpus has to be prose nobody edited with this tool, which rules out most of
+what you have. Your chat history does not go through a model, so `human-voice`
+reads your own messages out of it and writes a profile. **That file stays on
+your machine**: it is gitignored, and running it against your own history gives
+you yours.
 
-## The cold read
+## What a pattern cannot do
 
-A regex never catches a number contradicting another number, or a term used
-ninety lines before it is explained. On one page that passed every detector, a
-fresh reader found thirty of those, and that reader cannot be whoever wrote the
-draft. `SKILL.md` carries the prompt: a subagent that has seen only the file,
-five questions about where a reader stopped, none about style. Then the counts
-run again, because fixing what it finds writes new tells.
+It never catches a number contradicting another number, or a term used ninety
+lines before it is explained. On one page that passed every detector, a fresh
+reader found thirty of those, and that reader cannot be whoever wrote the draft.
+[`SKILL.md`](SKILL.md) carries the prompt: a subagent that has seen only the
+file, five questions about where a reader stopped, none about style. Then the
+counts run again, because fixing what it finds writes new tells.
 
 ## Tests
 
@@ -134,9 +113,8 @@ hooks have to stay silent on a clean page.
 
 ## Credits
 
-Pattern catalogue from
-[harshaneel/humanize](https://github.com/harshaneel/humanize) (MIT, © 2026
-Harshaneel Gokhale). Added here: the Spanish forms, the item-by-item procedure,
-and a program that counts where a model used to read.
-
-MIT.
+MIT, and it builds on
+[harshaneel/humanize](https://github.com/harshaneel/humanize), also MIT and
+© 2026 Harshaneel Gokhale, which is where the pattern catalogue comes from.
+Added here: the Spanish forms, the item-by-item procedure, and a program that
+counts where a model used to read.
