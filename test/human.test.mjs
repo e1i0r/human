@@ -301,6 +301,31 @@ test("es: the four rhythm measures have Spanish too", () => {
   assert.deepEqual(missing, [], `sin español: ${missing.join(", ")}`);
 });
 
+test("nothing claims a number of detectors that is not the number", () => {
+  // The landing said "thirty-two" three times and its own cards added to
+  // thirty-six, because the four rhythm measures were counted as detectors.
+  // A reader who adds them up and gets a different answer stops believing the
+  // rest of the page, which on this page is the whole argument.
+  const hard = DETECTORS.filter((d) => d.level === "HARD").length;
+  const review = DETECTORS.filter((d) => d.level === "REVIEW").length;
+  assert.equal(hard + review, DETECTORS.length, "todo detector es HARD o REVIEW");
+
+  const fixable = DETECTORS.filter((d) => fixFor(d.id));
+  assert.ok(fixable.every((d) => d.level === "HARD"),
+    "los que se arreglan solos son duros, y la página lo dice así");
+  assert.ok(fixable.length <= hard,
+    `${fixable.length} con arreglo no pueden ser "casi los mismos" ${hard} duros`);
+
+  for (const file of ["README.md", "agents/llms.es.txt", "agents/llms.en.txt"]) {
+    const text = readFileSync(join(ROOT, file), "utf8");
+    const claimed = [...text.matchAll(/\b(\d{2})\s+(?:detectors|detectores|patterns|patrones)\b/g)]
+      .map((m) => Number(m[1]));
+    for (const n of claimed) {
+      assert.equal(n, DETECTORS.length, `${file} dice ${n} y son ${DETECTORS.length}`);
+    }
+  }
+});
+
 test("agents: llms.txt says what the tool actually does", () => {
   // It is not a list of links. An agent that follows one ends up scraping a
   // three-column landing page, which goes badly. What it needs is the command,

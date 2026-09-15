@@ -2,7 +2,7 @@
 
 > Counts the AI tells in a draft and fails when one is over budget. It takes one
 > pattern, looks for it in every unit of the document, and prints the number.
-> Thirty-two patterns, markdown and HTML, Spanish and English.
+> 32 detectors and 4 rhythm measures, markdown and HTML, Spanish and English.
 
 ## How to run it
 
@@ -25,7 +25,7 @@ Three levels, and the split decides what is yours to do.
   touching the sentence. These never fail a run.
 - **RHYTHM**, four measures over paragraphs and quotes.
 
-Five of the thirty-two have a mechanical fix. The other twenty-seven need
+Five of the six hard ones have a mechanical fix. The other twenty-seven need
 rewriting, and rewriting one needs knowing what the sentence meant.
 
 Re-run over the whole document after each pass of fixes, never only the lines

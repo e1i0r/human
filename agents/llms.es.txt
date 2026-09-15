@@ -25,8 +25,8 @@ Tres niveles, y la división decide qué te toca a ti.
   frase. Nunca fallan una corrida.
 - **RITMO**, cuatro medidas sobre párrafos y citas.
 
-Cinco de los treinta y dos tienen arreglo mecánico. Para los otros veintisiete
-hay que reescribir, y reescribir uno exige saber qué quiso decir la frase.
+Cinco de los seis duros tienen arreglo mecánico. Los otros veintisiete hay que
+reescribirlos, y reescribir uno exige saber qué quiso decir la frase.
 
 Vuelve a correrlo sobre el documento entero después de cada pasada de arreglos,
 nunca sólo sobre las líneas que tocaste. Un arreglo escribe tics nuevos mientras

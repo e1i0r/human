@@ -39,9 +39,10 @@ or a CI job unchanged. `--only=REVIEW`, `--brief`, `--ignore=quotes.txt`.
 **Six HARD**, settled by the pattern: em dashes, semicolons, curly quotes,
 banned vocabulary, negation framing, AI transitions. **Twenty-six REVIEW**, which
 a pattern points at and cannot rule on, each carrying the legitimate version it
-gets confused with. **Four rhythm measures** over running prose. Of the REVIEW
-ones, four run over Spanish only and exist in no other tool. All thirty-two are
-documented in [`src/detectors/`](src/detectors/README.md).
+gets confused with. Four of the REVIEW
+ones apply to Spanish only. Separately, **four rhythm measures** run over the
+prose as a whole, and those are not detectors. All 32 are documented in
+[`src/detectors/`](src/detectors/README.md).
 
 There is a browser editor at [human.e1i0.com/app](https://human.e1i0.com/app),
 running the same modules with no server behind it.
