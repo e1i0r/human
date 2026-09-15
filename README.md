@@ -111,10 +111,12 @@ counts run again, because fixing what it finds writes new tells.
 every hit is compared with its line and its text rather than its count, and the
 hooks have to stay silent on a clean page.
 
-## Credits
+## Licence
 
-MIT, and it builds on
-[harshaneel/humanize](https://github.com/harshaneel/humanize), also MIT and
-© 2026 Harshaneel Gokhale, which is where the pattern catalogue comes from.
-Added here: the Spanish forms, the item-by-item procedure, and a program that
-counts where a model used to read.
+[MIT](LICENSE), © 2026 Elio Rincón. Use it, change it, ship it in something you
+sell. Keep the notice.
+
+It builds on [harshaneel/humanize](https://github.com/harshaneel/humanize), also
+MIT and © 2026 Harshaneel Gokhale, which is where the pattern catalogue comes
+from. Added here: the Spanish forms, the item-by-item procedure, and a program
+that counts where a model used to read.
