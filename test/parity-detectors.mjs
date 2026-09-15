@@ -46,7 +46,12 @@ function fromPython(file) {
 const CFG = {
   "em-dash": { per_words: 300 },
   "subjectless-fragment": { max_words: 6 },
+  "heading-no-subject": { max_words: 8 },
+  "aphorism-closer": { min_unit_words: 20, low: 4, high: 10 },
   "deictic-pivot": { max_words: 8 },
+  polyptoton: { window: 40, enough: 3, min_len: 5 },
+  tricolon: { members: 3, max_member_words: 6 },
+  "negated-echo": { landed: 12, max_tail_words: 6 },
 };
 
 let failures = 0;

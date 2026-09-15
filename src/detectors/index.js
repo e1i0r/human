@@ -26,7 +26,8 @@ import midSentenceColon from "./mid-sentence-colon.js";
 import deicticPivot from "./deictic-pivot.js";
 import significance from "./significance.js";
 import stackedAppositive from "./stacked-appositive.js";
-import thesisOpenerMissing from "./pattern-announcement.js";
+import thesisOpener from "./thesis-opener.js";
+import patternAnnouncement from "./pattern-announcement.js";
 import turnsOut from "./turns-out.js";
 import participialSetup from "./participial-setup.js";
 import performativeHumility from "./performative-humility.js";
@@ -37,6 +38,15 @@ import peninsularSpanish from "./peninsular-spanish.js";
 import englishCalque from "./english-calque.js";
 import nominalizedParticle from "./nominalized-particle.js";
 import elevatedRegister from "./elevated-register.js";
+
+// REVIEW: the ones a regex cannot express on its own.
+import headingNoSubject from "./heading-no-subject.js";
+import anaphora from "./anaphora.js";
+import polyptoton from "./polyptoton.js";
+import aphorismCloser from "./aphorism-closer.js";
+import tricolon from "./tricolon.js";
+import parallelSubjectMirror from "./parallel-subject-mirror.js";
+import negatedEcho from "./negated-echo.js";
 
 
 /** @type {import("./base.js").Detector[]} */
@@ -49,13 +59,19 @@ export const DETECTORS = [
   aiTransition,
 
   subjectlessFragment,
+  headingNoSubject,
   agentlessPassive,
   pseudoCleft,
+  anaphora,
+  polyptoton,
   midSentenceColon,
+  aphorismCloser,
   deicticPivot,
   significance,
+  tricolon,
   stackedAppositive,
-  thesisOpenerMissing,
+  thesisOpener,
+  patternAnnouncement,
   turnsOut,
   participialSetup,
   performativeHumility,
@@ -65,7 +81,9 @@ export const DETECTORS = [
   peninsularSpanish,
   englishCalque,
   nominalizedParticle,
+  parallelSubjectMirror,
   elevatedRegister,
+  negatedEcho,
 ];
 
 /** @param {string} id */
