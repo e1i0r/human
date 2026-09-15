@@ -1,8 +1,17 @@
 <!-- human: specimen -->
 # human
 
-Counts the AI tells in a draft and fails when one is over budget.
+Sanitary linter for prose. Counts AI tells and fails when one is over budget.
 Markdown and HTML, Spanish and English. Node 20+, no dependencies.
+
+## Mechanical cleanup, human writing
+
+**The tool does the mechanical part.** Soft transitions, inflated adjectives,
+predictable symmetries, model vocabulary. Like a code formatter: nobody spends
+time on mechanical noise.
+
+**The rest stays human.** Judgement, intent, friction kept on purpose. No regex
+settles that. The tool clears the table. The person writes.
 
 Every other tool in this space asks a model to read a draft and grade it. A
 model grading its own prose finds nothing, because the prose sits exactly where
@@ -37,9 +46,9 @@ Exit code is the number of budgets exceeded, so it drops into a pre-commit hook
 or a CI job unchanged. `--only=REVIEW`, `--brief`, `--ignore=quotes.txt`.
 
 **Six HARD**, settled by the pattern: em dashes, semicolons, curly quotes,
-banned vocabulary, negation framing, AI transitions. **Twenty-six REVIEW**, which
+banned vocabulary, negation framing, AI transitions. **Twenty-eight REVIEW**, which
 a pattern points at and cannot rule on, each carrying the legitimate version it
-gets confused with. Four of the REVIEW
+gets confused with. Five of the REVIEW
 ones apply to Spanish only. Separately, **four rhythm measures** run over the
 prose as a whole, and those are not detectors. All 34 are documented in
 [`src/detectors/`](src/detectors/README.md).
@@ -99,11 +108,11 @@ you yours.
 
 ## What a pattern cannot do
 
-It never catches a number contradicting another number, or a term used ninety
+That is the 20%. No number contradicting another number, no term used ninety
 lines before it is explained. On one page that passed every detector, a fresh
 reader found thirty of those, and that reader cannot be whoever wrote the draft.
 [`SKILL.md`](SKILL.md) carries the prompt: a subagent that has seen only the
-file, five questions about where a reader stopped, none about style. Then the
+file, nine questions about where a reader stopped, none about style. Then the
 counts run again, because fixing what it finds writes new tells.
 
 ## Tests

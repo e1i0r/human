@@ -1,7 +1,7 @@
 {
   "name": "@e1i0/human",
-  "version": "0.2.1",
-  "description": "Count the AI tells in a draft and fail when one is over budget. Spanish and English.",
+  "version": "0.2.2",
+  "description": "Sanitary linter for prose. Mechanical cleanup, human writing. Spanish and English.",
   "type": "module",
   "bin": {
     "human": "./bin/human.js",
