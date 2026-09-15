@@ -46,8 +46,8 @@ export const RHYTHM_EN = {
 
 /** What the page says on its own, outside the catalogue. */
 export const UI_EN = {
-  emptyTitle: "Nothing to count yet",
-  emptyWhat: "Paste a draft and every pattern shows up with its count, the zeros included. Counted stretches get underlined in the text.",
+  emptyTitle: "Paste a draft",
+  emptyWhat: "Every pattern shows up with its count and underlined in the text, the zeros included.",
   tryExample: "Try an example",
   example: "What this system does is coordinate processes — and moreover, it does so robustly.\n\nIt is not just a tool, it is a platform; comprehensive and robust. It is important to note that this is crucial for the team.\n\nFurthermore, the team works. Nobody looks. Nobody measures. Nobody notices.\n\nThe report tells you what usually ships alongside these files and this time it did not.",
   title: "Paste a draft and see what it counts",

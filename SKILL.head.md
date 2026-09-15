@@ -13,7 +13,16 @@ description: >
 
 # human
 
-Counts the AI tells in a draft, names them, and fails when one is over budget.
+Sanitary linter for prose. Counts AI tells, names them, and fails when one is over budget.
+
+## Mechanical cleanup, human writing
+
+**The tool does the mechanical part.** Soft transitions, inflated adjectives,
+predictable symmetries, model vocabulary. Like a code formatter: nobody spends
+time on mechanical noise.
+
+**The rest stays human.** Judgement, intent, friction kept on purpose. No regex
+settles that. The tool clears the table. The person writes.
 
 It exists because the usual way of checking does not work. The usual way is to
 read the text and ask "does anything here look generated?", which puts the
@@ -87,7 +96,7 @@ writer answers about their own draft.
 
 ## The cold read
 
-A regex counts patterns. It does not read, so it never catches a number that
+That is the 20%. A regex counts patterns. It does not read, so it never catches a number that
 contradicts another number, a term used ninety lines before it is explained, or
 an example borrowed from a domain the page never mentioned. On one landing page
 that passed every detector clean, a reader found thirty of those.
