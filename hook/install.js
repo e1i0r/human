@@ -22,13 +22,20 @@ import { dirname, join } from "node:path";
 const SETTINGS = join(homedir(), ".claude", "settings.json");
 const HERE = import.meta.dirname;
 
-// Two, because one is not enough. on-write covers Write and Edit, which is how
-// most sessions change a file. on-bash covers the rest: a heredoc rewriting a
-// page is a Bash call as far as the harness knows, and on the session this was
-// built in every edit went that way, so the write hook would never have fired.
-const HOOKS = [
+// Two after the fact, because one is not enough. on-write covers Write and
+// Edit, which is how most sessions change a file. on-bash covers the rest: a
+// heredoc rewriting a page is a Bash call as far as the harness knows, and on
+// the session this was built in every edit went that way, so the write hook
+// would never have fired.
+const AFTER = [
   ["Write|Edit|MultiEdit|NotebookEdit", join(HERE, "on-write.js")],
   ["Bash", join(HERE, "on-bash.js")],
+];
+
+// And one before, because a register only works before. Counting a page and
+// telling it what it was for are opposite ends of the same job.
+const BEFORE = [
+  ["Write|Edit|MultiEdit|NotebookEdit", join(HERE, "on-prose.js")],
 ];
 
 /**
@@ -39,13 +46,13 @@ const HOOKS = [
  * the only sign is that the reports quietly stop arriving. env node resolves at
  * run time.
  */
-const entries = () => HOOKS.map(([matcher, file]) => {
+const entries = (hooks) => hooks.map(([matcher, file]) => {
   chmodSync(file, 0o755);
   return { matcher, hooks: [{ type: "command", command: file }] };
 });
 
 const mine = (group) => (group.hooks ?? []).some((h) =>
-  /on-write\.js|on-bash\.js|on_write\.py|on_bash\.py/.test(h.command ?? ""));
+  /on-write\.js|on-bash\.js|on-prose\.js|on_write\.py|on_bash\.py/.test(h.command ?? ""));
 
 function load() {
   if (!existsSync(SETTINGS)) return {};
@@ -70,13 +77,15 @@ async function add(ask) {
   const data = load();
   data.hooks ??= {};
   data.hooks.PostToolUse ??= [];
-  const groups = data.hooks.PostToolUse;
-  if (groups.some(mine)) {
+  data.hooks.PreToolUse ??= [];
+  if (data.hooks.PostToolUse.some(mine) || data.hooks.PreToolUse.some(mine)) {
     console.log("  already installed");
     return 0;
   }
 
-  console.log(`\n  This adds two PostToolUse hooks to ${SETTINGS}:\n`);
+  console.log(`\n  This adds three hooks to ${SETTINGS}:\n`);
+  console.log("    before a Write or an Edit to prose, hand over the register");
+  console.log("    the project declared, so the drafting knows what it is for");
   console.log("    after a Write or an Edit, run the checker on that file");
   console.log("    after a shell command, run it on the prose the tree changed");
   console.log("    and print what they found, if anything.\n");
@@ -93,26 +102,29 @@ async function add(ask) {
     }
   }
 
-  groups.push(...entries());
+  data.hooks.PreToolUse.push(...entries(BEFORE));
+  data.hooks.PostToolUse.push(...entries(AFTER));
   save(data);
-  console.log("  installed, both of them. New sessions pick them up.");
+  console.log("  installed, all three. New sessions pick them up.");
   return 0;
 }
 
 function remove() {
   const data = load();
-  const groups = data.hooks?.PostToolUse ?? [];
-  const kept = groups.filter((g) => !mine(g));
-  if (kept.length === groups.length) {
+  let dropped = 0;
+  for (const event of ["PreToolUse", "PostToolUse"]) {
+    const groups = data.hooks?.[event] ?? [];
+    const kept = groups.filter((g) => !mine(g));
+    dropped += groups.length - kept.length;
+    if (!groups.length) continue;
+    if (kept.length) data.hooks[event] = kept;
+    else delete data.hooks[event];
+  }
+  if (!dropped) {
     console.log("  not installed");
     return 0;
   }
-  if (kept.length) {
-    data.hooks.PostToolUse = kept;
-  } else {
-    delete data.hooks.PostToolUse;
-    if (!Object.keys(data.hooks).length) delete data.hooks;
-  }
+  if (data.hooks && !Object.keys(data.hooks).length) delete data.hooks;
   save(data);
   console.log("  removed");
   return 0;

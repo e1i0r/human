@@ -60,11 +60,14 @@ human-hooks            # asks first
 human-hooks --remove   # undoes it
 ```
 
-Two `PostToolUse` entries in `~/.claude/settings.json`, merged rather than
-written and backed up the first time. One after Write and Edit, one after Bash
-that asks git what prose the tree changed, because a heredoc rewriting a page is
-a Bash call and the first hook never sees it. Silent when there is nothing to
-look at.
+Three entries in `~/.claude/settings.json`, merged rather than written and
+backed up the first time. After Write and Edit, the checker runs on that file.
+After Bash it asks git what prose the tree changed, because a heredoc rewriting
+a page is a Bash call and the first hook never sees it. All silent when there is
+nothing to look at.
+
+The third runs *before* a write and hands over the register (below), once per
+session, because a register read after the draft exists was read too late.
 
 ## Registers
 
@@ -82,8 +85,9 @@ human --register=sales
 register = "sales"
 ```
 
-Twelve ship. A register steers the drafting and marks the rows that cost more
-there than elsewhere, without moving a threshold.
+Twelve ship. A register marks the rows that cost more there than elsewhere
+without moving a threshold, and the pre-write hook puts its voice in front of
+whoever is drafting, so it steers the writing instead of grading it.
 
 ## Making it yours
 
