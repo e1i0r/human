@@ -347,7 +347,7 @@ export const UI_ES = {
   markdown: "Markdown",
   register: "Registro",
   none: "ninguno",
-  privacy: "El texto se cuenta en tu navegador y se queda ahí. No hay servidor que lo reciba.",
+  privacy: "El texto no sale de tu navegador ni se usa para nada más.",
   clearTitle: "El borrador queda guardado en este navegador para que siga aquí cuando vuelvas",
   clear: "Borrar el borrador",
   undo: "Deshacer",
