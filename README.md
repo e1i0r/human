@@ -45,7 +45,7 @@ all under budget
 Exit code is the number of budgets exceeded, so it drops into a pre-commit hook
 or a CI job unchanged. `--only=REVIEW`, `--brief`, `--ignore=quotes.txt`.
 
-## What it checks
+## The thirty-two
 
 **HARD**, what a regex settles alone: em dashes, semicolons, curly quotes,
 banned vocabulary, negation framing, AI transitions.
@@ -70,9 +70,9 @@ human-hooks --remove   # undoes it
 ```
 
 Three entries in `~/.claude/settings.json`, merged rather than written and
-backed up the first time. After Write and Edit, the checker runs on that file.
-After Bash it asks git what prose the tree changed, because a heredoc rewriting
-a page is a Bash call and the first hook never sees it. All silent when there is
+backed up the first time. The checker runs on the file a Write or an Edit touched. A heredoc rewriting a
+page is a Bash call and that first hook never sees it, so the second one asks
+git what prose the tree changed instead. Neither says anything when there is
 nothing to look at.
 
 The third runs *before* a write and hands over the register (below), once per

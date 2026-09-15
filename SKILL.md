@@ -17,13 +17,13 @@ Counts the AI tells in a draft, names them, and fails when one is over budget.
 
 It exists because the usual way of checking does not work. The usual way is to
 read the text and ask "does anything here look generated?", which puts the
-writer in charge of deciding what is suspicious. The writer produced the text,
-so nothing is suspicious. Every miss this was built from had the same shape:
+writer in charge of deciding what is suspicious. Nothing is suspicious to the
+person who wrote it. Every miss this was built from had the same shape:
 draft read, nothing jumped out, pass declared clean, four tells still in it.
 
 So nothing here asks you to read for a pattern. A detector goes item by item,
 scans every unit in the document for that one pattern, and prints the count.
-Including the zeros. What you judge is only what the report hands you.
+Including the zeros. You judge what the report hands you, and nothing else.
 
 ---
 
@@ -94,8 +94,8 @@ that passed every detector clean, a reader found thirty of those.
 
 That reader must not be whoever wrote the draft. Rewriting your own text anchors
 you to what you meant rather than what is on the page, which is the same failure
-this whole thing exists to work around. So: a subagent, given the file and
-nothing else.
+this whole thing exists to work around. So a subagent gets the file and nothing
+else.
 
 **Run it after the counts are clean, before showing anybody.** Dispatch a
 general-purpose subagent with this, filling in the file and what the piece is:
@@ -188,8 +188,8 @@ non-finding is a report that stops being opened.
 
 ## The two levels
 
-**HARD.** The regex settles it. An em dash is an em dash and no reading changes
-that. Over budget means broken, and the exit code counts it.
+**HARD.** The regex settles it, and no reading of the sentence changes the
+answer. Over budget means broken, and the exit code counts it.
 
 **REVIEW.** The regex can point but cannot rule. Whether it is a tell depends on
 what the sentence is doing, so every one of these carries a **Not this** that
