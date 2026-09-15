@@ -11,6 +11,7 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { readFileSync, readdirSync } from "node:fs";
+import { execFileSync } from "node:child_process";
 import { dirname, join } from "node:path";
 
 import { check, DETECTORS } from "../src/index.js";
@@ -201,6 +202,20 @@ test("registers: a watched pattern is a pattern that exists", () => {
 
 test("registers: a name nobody knows lists the ones that exist", () => {
   assert.throws(() => load("saels"), /no register called "saels".*sales/s);
+});
+
+test("nothing measured from a person's own history ships", () => {
+  // It was in the first tarball. .gitignore keeps a voice profile out of git and
+  // npm ignores .gitignore entirely once package.json declares "files", so the
+  // whole registers directory went in, profile included.
+  const listed = execFileSync("npm", ["pack", "--dry-run", "--json"], {
+    cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "ignore"],
+  });
+  const shipped = JSON.parse(listed)[0].files.map((f) => f.path);
+  const leaked = shipped.filter((p) => /voice-/.test(p));
+  assert.deepEqual(leaked, [], `these would be published: ${leaked.join(", ")}`);
+  // And the guard is worthless if the directory stopped shipping at all.
+  assert.ok(shipped.some((p) => p === "registers/blog.toml"), "the registers are missing");
 });
 
 test("registers: declaring none is not declaring a broken one", () => {
