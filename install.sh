@@ -38,6 +38,17 @@ if node "$DEST/bin/human.js" "$DEST/test/fixtures/fixture-es.md" >/dev/null 2>&1
 fi
 echo "human: installed in $DEST"
 
+# Put the four commands on the PATH, straight from the checkout. npm installs a
+# directory as happily as a published package, so this needs no registry, and
+# `git pull` in the checkout updates what the commands run.
+if command -v npm >/dev/null && npm install -g "$DEST" >/dev/null 2>&1; then
+  echo "human: human, human-hooks, human-calibrate and human-voice are on your PATH"
+  RUN="human"
+else
+  echo "human: npm could not link the commands, so run it by path"
+  RUN="node $DEST/bin/human.js"
+fi
+
 # The hooks are what make this run without anybody remembering to. They ask
 # first unless this script was told not to, and undo with --remove.
 if [ "${1:-}" = "--with-hooks" ]; then
@@ -46,4 +57,4 @@ else
   node "$DEST/hook/install.js" || true
 fi
 
-echo "human: node $DEST/bin/human.js YOUR_FILE.md"
+echo "human: $RUN YOUR_FILE.md"

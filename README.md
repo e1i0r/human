@@ -10,9 +10,12 @@ that model would have put it. So this does not read. A detector takes one
 pattern, scans every unit for it, prints the count, and the zeros print too.
 
 ```bash
-npm install -g @e1i0r/human
+curl -fsSL https://raw.githubusercontent.com/e1i0r/human/main/install.sh | bash
 human post.md
 ```
+
+That clones into `~/.claude/skills/human`, so an agent gets the skill along with
+the commands, and offers to install the hooks on the way out.
 
 ```
 post.md   77 units · 100 sentences · 1018 words
@@ -49,7 +52,7 @@ line saying what the legitimate version looks like. Four are Spanish only and
 exist in no other tool: peninsular vocabulary, English calques, nominalized
 particles, elevated register. `src/detectors/` documents each beside its pattern.
 
-## The hook
+## The hooks
 
 A skill cannot make anybody follow it. Over one long session the counts were
 skipped before showing a draft, skipped again after fixing what they found, and
