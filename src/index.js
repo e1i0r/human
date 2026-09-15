@@ -18,7 +18,8 @@ export { extract, PROSE, Unit, split } from "./units/index.js";
 export { measure } from "./rhythm/index.js";
 export { Report } from "./report.js";
 export * as lang from "./lang.js";
-export { ES, GROUPS_ES, RHYTHM_ES } from "./i18n/es.js";
+export { ES, GROUPS_ES, RHYTHM_ES, UI_ES } from "./i18n/es.js";
+export { GROUPS_EN, RHYTHM_EN, UI_EN } from "./i18n/en.js";
 export { FIXES, applyFix, fixFor } from "./fixes.js";
 export { diff } from "./diff.js";
 

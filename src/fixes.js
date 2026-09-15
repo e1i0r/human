@@ -17,7 +17,7 @@
  * @typedef {object} Fix
  * @property {string} id el detector que lo produce
  * @property {(text: string) => string} apply
- * @property {string} what qué hace, para el botón
+ * @property {{es: string, en: string}} what qué hace, para el botón
  */
 
 // Una raya con espacios a los lados separa dos mitades de una frase, así que una
@@ -67,12 +67,12 @@ const keepCase = (from, to) =>
 export const FIXES = [
   {
     id: "em-dash",
-    what: "cambiar la raya por una coma",
+    what: { es: "cambiar la raya por una coma", en: "change the em dash to a comma" },
     apply: (text) => text.replace(SPACED_DASH, ", "),
   },
   {
     id: "curly-quotes",
-    what: "cambiar las comillas curvas por rectas",
+    what: { es: "cambiar las comillas curvas por rectas", en: "change the curly quotes to straight ones" },
     apply: (text) => text.replace(/[“”‘’«»]/g, (c) => CURLY[c]),
   },
   {
@@ -80,18 +80,18 @@ export const FIXES = [
     // Una coma y no un punto. El punto exige que las dos mitades sean oraciones
     // y eso es justo lo que el patrón no ve: partir "es una plataforma; robusta
     // y comprehensiva" deja un fragmento sin sujeto, que es otro detector.
-    what: "cambiar el punto y coma por una coma",
+    what: { es: "cambiar el punto y coma por una coma", en: "change the semicolon to a comma" },
     apply: (text) => text.replace(/;\s+/g, ", "),
   },
   {
     id: "ai-transition",
-    what: "quitar el conector y dejar la frase",
+    what: { es: "quitar el conector y dejar la frase", en: "drop the opener and keep the sentence" },
     apply: (text) => text.replace(OPENER, (_, space) => space)
       .replace(/^(\s*)(\p{Ll})/u, (_, s, c) => s + c.toUpperCase()),
   },
   {
     id: "banned-vocabulary",
-    what: "cambiar por la palabra llana",
+    what: { es: "cambiar por la palabra llana", en: "swap in the plain word" },
     apply: (text) => {
       let out = text;
       // Las de varias palabras primero, o "en relación con" se queda a medias.

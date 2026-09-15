@@ -18,7 +18,8 @@ import { check, DETECTORS } from "../src/index.js";
 import { defaults, merge } from "../src/config.js";
 import { declared, load, names } from "../src/registers.js";
 import { parse } from "../src/toml.js";
-import { ES, RHYTHM_ES } from "../src/i18n/es.js";
+import { ES, RHYTHM_ES, UI_ES } from "../src/i18n/es.js";
+import { GROUPS_EN, RHYTHM_EN, UI_EN } from "../src/i18n/en.js";
 import { isProse, reportOn } from "../hook/common.js";
 import { extract, split } from "../src/units/index.js";
 import { measure } from "../src/rhythm/index.js";
@@ -189,7 +190,9 @@ test("fixes: only the ones a pattern can actually settle have one", () => {
   assert.equal(withFix.length, FIXES.length);
   for (const f of FIXES) {
     assert.ok(DETECTORS.some((d) => d.id === f.id), `${f.id} is not a detector`);
-    assert.ok(f.what?.length > 10, `${f.id}: el botón no dice qué hace`);
+    for (const code of ["es", "en"]) {
+      assert.ok(f.what?.[code]?.length > 10, `${f.id}: el botón no dice qué hace en ${code}`);
+    }
   }
 });
 
@@ -296,6 +299,22 @@ test("es: the four rhythm measures have Spanish too", () => {
     .rows.map((r) => r.name);
   const missing = names.filter((n) => !RHYTHM_ES[n]);
   assert.deepEqual(missing, [], `sin español: ${missing.join(", ")}`);
+});
+
+test("i18n: the two languages say the same things", () => {
+  // A page half in the reader's language and half in the other is worse than
+  // one language honestly, and a missing key shows up as an empty label that
+  // nobody notices until somebody screenshots it.
+  const missing = Object.keys(UI_ES).filter((k) => !UI_EN[k]);
+  assert.deepEqual(missing, [], `sin inglés: ${missing.join(", ")}`);
+  const extra = Object.keys(UI_EN).filter((k) => !UI_ES[k]);
+  assert.deepEqual(extra, [], `sin español: ${extra.join(", ")}`);
+  for (const key of Object.keys(RHYTHM_ES)) {
+    assert.ok(RHYTHM_EN[key], `ritmo sin inglés: ${key}`);
+  }
+  for (const level of ["HARD", "REVIEW", "RHYTHM"]) {
+    assert.ok(GROUPS_EN[level]?.what?.length > 40, `${level}: sin explicación en inglés`);
+  }
 });
 
 test("registers: each one says what it is, what it is for, and how it sounds", () => {
