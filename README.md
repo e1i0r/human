@@ -1,7 +1,7 @@
 <!-- human: specimen -->
 # human
 
-Sanitary linter for prose. Counts AI tells and fails when one is over budget.
+Linter of AI patterns. Counts them and fails when one is over budget.
 Markdown and HTML, Spanish and English. Node 20+, no dependencies.
 
 ## Mechanical cleanup, human writing
