@@ -5,7 +5,8 @@
   "type": "module",
   "bin": {
     "human": "./bin/human.js",
-    "human-hooks": "./hook/install.js"
+    "human-hooks": "./hook/install.js",
+    "human-calibrate": "./bin/calibrate.js"
   },
   "exports": {
     ".": "./src/index.js",
