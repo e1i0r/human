@@ -192,7 +192,8 @@ test("hook: a clean page is a page the hook says nothing about", () => {
   const log = console.log;
   console.log = (...a) => said.push(a.join(" "));
   try {
-    reportOn([join(ROOT, "LICENSE"), "/no/such/file.md"]);
+    // A page with nothing to say about it, and a path that is not there.
+    reportOn([join(ROOT, "registers", "README.md"), "/no/such/file.md"]);
   } finally {
     console.log = log;
   }

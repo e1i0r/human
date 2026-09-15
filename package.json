@@ -6,7 +6,8 @@
   "bin": {
     "human": "./bin/human.js",
     "human-hooks": "./hook/install.js",
-    "human-calibrate": "./bin/calibrate.js"
+    "human-calibrate": "./bin/calibrate.js",
+    "human-voice": "./bin/voice.js"
   },
   "exports": {
     ".": "./src/index.js",
