@@ -11,15 +11,17 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
-import { join } from "node:path";
+import { dirname, join } from "node:path";
 
 import { check, DETECTORS } from "../src/index.js";
 import { defaults, merge } from "../src/config.js";
 import { declared, load, names } from "../src/registers.js";
 import { parse } from "../src/toml.js";
+import { isProse, reportOn } from "../hook/common.js";
 import { extract, split } from "../src/units/index.js";
 
 const HERE = import.meta.dirname;
+const ROOT = dirname(HERE);
 const read = (name) => readFileSync(join(HERE, "fixtures", name), "utf8");
 const expected = JSON.parse(readFileSync(join(HERE, "expected.json"), "utf8"));
 
@@ -168,6 +170,33 @@ test("units: a code fence is not prose", () => {
   const units = extract("Uno dos tres.\n\n```\nconst x = 1;\n```\n\nCuatro cinco.\n", "a.md");
   const text = units.map((u) => u.text).join(" ");
   assert.ok(!text.includes("const x"), "the fence leaked into the prose");
+});
+
+test("hook: what counts as prose somebody meant to publish", () => {
+  const here = join(HERE, "fixtures", "fixture-es.md");
+  // Under test/fixtures, which is a directory this never argues with.
+  assert.equal(isProse(here), false);
+
+  assert.equal(isProse("/no/such/file.md"), false, "a path that is not there");
+  assert.equal(isProse(join(HERE, "human.test.mjs")), false, "source is not prose");
+  const readme = join(ROOT, "registers", "README.md");
+  assert.equal(isProse(readme), true, "a readme is prose");
+  assert.equal(isProse(readme, ["registers/"]), false, "the project said not to");
+  assert.equal(isProse(join(ROOT, "node_modules", "x", "README.md")), false, "not ours");
+});
+
+test("hook: a clean page is a page the hook says nothing about", () => {
+  // The one thing a hook must not do is talk after every edit, because then it
+  // gets uninstalled. Silence is the ordinary case and has to stay free.
+  const said = [];
+  const log = console.log;
+  console.log = (...a) => said.push(a.join(" "));
+  try {
+    reportOn([join(ROOT, "LICENSE"), "/no/such/file.md"]);
+  } finally {
+    console.log = log;
+  }
+  assert.deepEqual(said, []);
 });
 
 test("units: a catalogue of the patterns is not a page full of them", () => {

@@ -3,12 +3,15 @@
   "version": "0.1.0",
   "description": "Count the AI tells in a draft and fail when one is over budget. Spanish and English.",
   "type": "module",
-  "bin": { "human": "./bin/human.js" },
+  "bin": {
+    "human": "./bin/human.js",
+    "human-hooks": "./hook/install.js"
+  },
   "exports": {
     ".": "./src/index.js",
     "./detectors": "./src/detectors/index.js"
   },
-  "files": ["src", "bin", "registers", "SKILL.md"],
+  "files": ["src", "bin", "hook", "registers", "SKILL.md"],
   "engines": { "node": ">=20" },
   "scripts": {
     "test": "node --test",
