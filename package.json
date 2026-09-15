@@ -13,11 +13,12 @@
     ".": "./src/index.js",
     "./detectors": "./src/detectors/index.js"
   },
-  "files": ["src", "bin", "hook", "registers", "SKILL.md"],
+  "files": ["src", "bin", "hook", "registers", "SKILL.md", "skills.sh.json"],
   "engines": { "node": ">=20" },
   "scripts": {
     "test": "node --test",
     "record": "node scripts/record.mjs",
+    "docs": "node scripts/skill.mjs && node scripts/detectors-readme.mjs",
     "check": "node bin/human.js README.md SKILL.md"
   },
   "license": "MIT",

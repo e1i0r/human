@@ -1,0 +1,10 @@
+{
+  "$schema": "https://skills.sh/schemas/skills.sh.schema.json",
+  "groupings": [
+    {
+      "title": "Writing",
+      "description": "Counting the AI tells in a draft instead of reading for them, in Spanish and English, with hooks so the register arrives before the writing and the counts arrive after it, without anybody remembering to ask.",
+      "skills": ["human"]
+    }
+  ]
+}

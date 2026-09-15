@@ -10,7 +10,7 @@
  */
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { readFileSync } from "node:fs";
+import { readFileSync, readdirSync } from "node:fs";
 import { dirname, join } from "node:path";
 
 import { check, DETECTORS } from "../src/index.js";
@@ -132,6 +132,48 @@ test("toml: a register's paragraph survives its own punctuation", () => {
   const r = parse(read("register.toml"));
   assert.match(r.voice, /^The reader is going to open the repository/);
   assert.ok(r.voice.includes("\n"), "a multi-line string keeps its lines");
+});
+
+test("detectors: each one documents what it catches and what it must not", () => {
+  // The "Not this" line is the one that matters. A REVIEW detector exists to be
+  // argued with, and a reader who cannot tell the legitimate version from the
+  // tell will either fix good prose or stop reading the report.
+  const dir = join(ROOT, "src", "detectors");
+  for (const d of DETECTORS) {
+    const file = readdirSync(dir).find((n) =>
+      new RegExp(`^\\s*id:\\s*"${d.id}"`, "m").test(readFileSync(join(dir, n), "utf8")));
+    assert.ok(file, `${d.id} has no file`);
+    const doc = readFileSync(join(dir, file), "utf8").split("*/")[0];
+    for (const field of ["Detects", "Fix", "Why"]) {
+      assert.match(doc, new RegExp(`^ \\* ${field}$`, "m"), `${d.id} has no ${field}`);
+    }
+    if (d.level === "REVIEW") {
+      assert.match(doc, /^ \* Not this$/m, `${d.id} never says what the legitimate version is`);
+    }
+  }
+});
+
+test("detectors: both generated documents list every one of them", () => {
+  // Two renderings of one source. The version this was ported from kept a
+  // second copy by hand, translated, and either could go stale in silence.
+  for (const doc of [join(ROOT, "src", "detectors", "README.md"), join(ROOT, "SKILL.md")]) {
+    const text = readFileSync(doc, "utf8");
+    for (const d of DETECTORS) {
+      assert.ok(text.includes(`### ${d.id}\n`), `${d.id} is missing from ${doc}`);
+    }
+  }
+});
+
+test("skill: the four fields a fixer needs survive the generation", () => {
+  const skill = readFileSync(join(ROOT, "SKILL.md"), "utf8");
+  for (const d of DETECTORS) {
+    const section = skill.split(`### ${d.id}\n`)[1].split("\n### ")[0];
+    assert.match(section, /\*\*Detects\.\*\* \S/, `${d.id}: nothing detected`);
+    assert.match(section, /\*\*Fix\.\*\* \S/, `${d.id}: no fix`);
+    if (d.level === "REVIEW") {
+      assert.match(section, /\*\*Not this\.\*\* \S/, `${d.id}: no legitimate version`);
+    }
+  }
 });
 
 test("registers: each one says what it is, what it is for, and how it sounds", () => {
