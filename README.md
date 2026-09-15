@@ -108,7 +108,7 @@ you yours.
 
 ## What a pattern cannot do
 
-That is the 20%. No number contradicting another number, no term used ninety
+That is the rest. No number contradicting another number, no term used ninety
 lines before it is explained. On one page that passed every detector, a fresh
 reader found thirty of those, and that reader cannot be whoever wrote the draft.
 [`SKILL.md`](SKILL.md) carries the prompt: a subagent that has seen only the

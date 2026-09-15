@@ -96,7 +96,7 @@ writer answers about their own draft.
 
 ## The cold read
 
-That is the 20%. A regex counts patterns. It does not read, so it never catches a number that
+That is the rest. A regex counts patterns. It does not read, so it never catches a number that
 contradicts another number, a term used ninety lines before it is explained, or
 an example borrowed from a domain the page never mentioned. On one landing page
 that passed every detector clean, a reader found thirty of those.
