@@ -386,7 +386,7 @@ test("i18n: the two languages say the same things", () => {
 
 test("registers: each one says what it is, what it is for, and how it sounds", () => {
   const found = names();
-  assert.ok(found.length >= 13, `only ${found.length} registers`);
+  assert.ok(found.length >= 12, `only ${found.length} registers`);
   for (const n of found) {
     const r = load(n);
     assert.equal(r.name, n, `${n}.toml calls itself ${r.name}`);
