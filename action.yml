@@ -1,0 +1,41 @@
+name: human
+description: Lint prose for AI writing tells. Fails the job when a budget is exceeded.
+author: Elio Rincón
+branding:
+  icon: edit-3
+  color: red
+
+inputs:
+  files:
+    description: Space-separated files or globs (markdown or html). `**` works.
+    required: false
+    default: "**/*.md"
+  args:
+    description: Extra flags for human, e.g. `--only=HARD` or `--register=blog`.
+    required: false
+    default: ""
+
+runs:
+  using: composite
+  steps:
+    - uses: actions/setup-node@v4
+      with:
+        node-version: "20"
+    - shell: bash
+      env:
+        HUMAN_FILES: ${{ inputs.files }}
+        HUMAN_ARGS: ${{ inputs.args }}
+      run: |
+        shopt -s globstar nullglob
+        files=()
+        for pattern in $HUMAN_FILES; do
+          for f in $pattern; do
+            case "$f" in node_modules/*|*/node_modules/*) continue ;; esac
+            files+=("$f")
+          done
+        done
+        if [ ${#files[@]} -eq 0 ]; then
+          echo "human: no files matched '$HUMAN_FILES'"
+          exit 0
+        fi
+        node "$GITHUB_ACTION_PATH/bin/human.js" "${files[@]}" $HUMAN_ARGS

@@ -106,4 +106,6 @@ for (const file of files) {
 }
 
 out.footer(total);
-process.exit(total);
+// Exit codes wrap at 256: a project with exactly 256 failures would exit 0 and
+// pass CI. Capped, the code still counts up to 255 and never lies about zero.
+process.exit(Math.min(total, 255));
