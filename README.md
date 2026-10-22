@@ -42,7 +42,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: e1i0r/human@main
+      - uses: e1i0r/human@v0
         with:
           files: "docs/**/*.md posts/*.md"
           args: --only=HARD
