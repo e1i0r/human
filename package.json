@@ -1,7 +1,7 @@
 {
   "name": "@e1i0/human",
   "version": "0.2.2",
-  "description": "Linter of AI patterns. Mechanical cleanup, human writing. Spanish and English.",
+  "description": "Linter for AI writing tells. Counts them and fails CI when one is over budget. Spanish and English, zero dependencies.",
   "type": "module",
   "bin": {
     "human": "./bin/human.js",
@@ -39,9 +39,23 @@
   },
   "keywords": [
     "writing",
-    "ai-detection",
     "prose",
+    "linter",
+    "ai-detection",
+    "ai-writing",
+    "llm",
+    "chatgpt",
+    "claude",
+    "claude-code",
+    "slop",
+    "style-checker",
+    "markdown",
+    "cli",
     "spanish",
-    "linter"
-  ]
+    "github-action"
+  ],
+  "homepage": "https://human.e1i0.com",
+  "bugs": {
+    "url": "https://github.com/e1i0r/human/issues"
+  }
 }
