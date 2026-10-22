@@ -1,4 +1,4 @@
-name: human
+name: human prose linter
 description: Lint prose for AI writing tells. Fails the job when a budget is exceeded.
 author: Elio Rincón
 branding:
