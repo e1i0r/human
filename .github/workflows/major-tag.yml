@@ -1,0 +1,27 @@
+name: major tag
+on:
+  release:
+    types: [published]
+
+permissions:
+  contents: write
+
+jobs:
+  move:
+    # Prereleases leave v0, v1... where they are.
+    if: ${{ !github.event.release.prerelease }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - env:
+          TAG: ${{ github.event.release.tag_name }}
+        run: |
+          if [[ ! "$TAG" =~ ^v[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+            echo "skipping $TAG: not vX.Y.Z"
+            exit 0
+          fi
+          major="${TAG%%.*}"
+          git fetch --tags --force
+          git tag -f "$major" "$TAG"
+          git push -f origin "$major"
+          echo "$major -> $TAG"
