@@ -1,7 +1,7 @@
 {
  "fixture-es.md": {
   "units": 22,
-  "words": 302,
+  "words": 306,
   "sentences": 38,
   "language": "es",
   "failures": 7,
@@ -166,7 +166,7 @@
     "hits": [
      [
       25,
-      "raiz 'regla' x3: La regla que define la regla que aplica a cada regla queda escrita. Na"
+      "raiz 'regla' x5: La regla que define la regla que aplica a cada regla queda escrita com"
      ]
     ]
    },
@@ -385,6 +385,10 @@
     "budget": 0,
     "hits": [
      [
+      5,
+      "No es una herramienta más, es una plataforma; robusta y comprehensiva."
+     ],
+     [
       16,
       "Nunca de un modelo."
      ],
@@ -527,7 +531,7 @@
     7,
     7,
     4,
-    13,
+    17,
     2,
     2,
     3,
@@ -705,18 +709,6 @@
      [
       16,
       "Nobody mines.  ||  Nobody reviews."
-     ]
-    ]
-   },
-   {
-    "id": "polyptoton",
-    "skipped": false,
-    "over": true,
-    "budget": 0,
-    "hits": [
-     [
-      44,
-      "raiz 'about' x3: The rule that the rule about rules governs is a rule nobody wrote down"
      ]
     ]
    },

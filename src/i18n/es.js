@@ -46,11 +46,11 @@ export const ES = {
   },
   "banned-vocabulary": {
     label: "vocabulario vetado",
-    what: "143 palabras que un modelo pone y una persona casi nunca: robusto, integral, exhaustivo, aprovechar, crucial, delve, leverage.",
+    what: "Unas 140 palabras que un modelo pone y una persona casi nunca: robusto, integral, exhaustivo, aprovechar, crucial, delve, leverage.",
     fix:
-      "La palabra concreta que usaría el oficio. utilizar es usar. robusto es lo que de verdad hace: \"aguanta 4.000 corridas al día\".",
+      "La palabra concreta que usaría el oficio. optimizar es decir qué se aceleró y cuánto. robusto es lo que de verdad hace: \"aguanta 4.000 corridas al día\".",
     not:
-      "\"Integral\" en su sentido matemático. \"Crucial\" dentro de una cita. Y \"leverage\", que sale por evidencia: las 34.000 palabras revisadas lo traen siempre como sustantivo, casi siempre con un número al lado.",
+      "\"Integral\" en su sentido matemático. \"Crucial\" dentro de una cita. Y \"leverage\", que sale por evidencia: las 34.000 palabras revisadas lo traen siempre como sustantivo, casi siempre con un número al lado. Tampoco utilizar, hoy en día ni a día de hoy, que también salen por evidencia: en 437.000 palabras escritas antes de 2022 aparecen en más de 200 frases, y en 169.000 palabras de modelo, en 6.",
   },
   "negation-framing": {
     label: "no es X, es Y",

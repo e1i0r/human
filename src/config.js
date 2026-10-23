@@ -53,16 +53,16 @@ export const DEFAULTS = {
   },
   "polyptoton": {
     window: [40, "words; beyond this the repetition is not felt as one"],
-    enough: [3, "occurrences inside the window"],
+    enough: [5, "occurrences inside the window; at 3, prose written before 2022 tripped it 53 times per 10k words, three times as often as model output"],
     min_len: [5, "shorter words repeat for grammatical reasons"],
   },
   "tricolon": {
     members: [3, "three is cadence; more is an inventory"],
-    max_member_words: [6, "a longer member carries content rather than beat"],
+    max_member_words: [8, "a longer member carries content rather than beat; 8 catches twice the model output that 6 did and widens its lead over human prose"],
   },
   "negative-punch": {
     min_words: [2, "one word is an interjection, not a sentence doing this"],
-    max_words: [9, "past this the sentence carries content, not a beat"],
+    max_words: [12, "past this the sentence carries content, not a beat; up to 12 still fires four times as often on model output as on human prose"],
   },
   "negated-echo": {
     landed: [12, "words before the tail; below this the sentence is the tail"],

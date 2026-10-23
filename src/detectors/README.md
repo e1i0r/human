@@ -11,7 +11,7 @@ Generated from the comments by `scripts/detectors-readme.mjs`. Edit the file, no
 | [`em-dash`](#em-dash) | HARD | es/en | An em dash or en dash anywhere in a unit. |
 | [`semicolon`](#semicolon) | HARD | es/en | A semicolon after a letter. Budget: none. |
 | [`curly-quotes`](#curly-quotes) | HARD | es/en | Any curly quote or apostrophe in a unit. Budget: none. |
-| [`banned-vocabulary`](#banned-vocabulary) | HARD | es/en | 143 terms, both languages, grouped in the source below by what they are |
+| [`banned-vocabulary`](#banned-vocabulary) | HARD | es/en | About 140 terms, both languages, grouped in the source below by what they are |
 | [`negation-framing`](#negation-framing) | HARD | es/en | no es X, es Y · no solo · más que X, es Y · it's not X, it's Y · not just. |
 | [`ai-transition`](#ai-transition) | HARD | es/en | A sentence opening on Además, · Asimismo, · Por otro lado, · Es evidente |
 | [`subjectless-fragment`](#subjectless-fragment) | REVIEW | es/en | A sentence of six words or fewer opening on a preposition or a negation, |
@@ -116,7 +116,7 @@ because nobody reaches for it while typing.
 
 `banned-vocabulary.js` · **HARD** · es/en
 
-**Detects.** 143 terms, both languages, grouped in the source below by what they are
+**Detects.** About 140 terms, both languages, grouped in the source below by what they are
 doing: core vocabulary, hedges and filler, formula openers and closers,
 significance inflation, promotional register. Spanish carries its gender
 and number endings, because robusto did not match robusta for an afternoon.
@@ -124,10 +124,11 @@ and number endings, because robusto did not match robusta for an afternoon.
 en: delve · comprehensive · foster · pivotal · showcase · a myriad of ·
 in conclusion · at the end of the day · breathtaking
 es: profundizar · exhaustivo · fomentar · piedra angular · cabe señalar ·
-en síntesis · a día de hoy · juega un papel clave
+en síntesis · en definitiva · juega un papel clave
 
-**Fix.** The concrete word the domain would use. utilizar becomes usar. robusto
-becomes whatever it actually does: "aguanta 4.000 corridas al día".
+**Fix.** The concrete word the domain would use. optimizar becomes what got
+faster and by how much. robusto becomes whatever it actually does:
+"aguanta 4.000 corridas al día".
 
 ```
 before   Una plataforma robusta y comprehensiva.
@@ -137,7 +138,10 @@ after    Aguanta 4.000 corridas al día.
 **Not this.** "Integral" in its mathematical sense. "Crucial" inside a quotation. And
 "leverage", which is out on the evidence: every occurrence across 34,000
 words was the noun, most with a number beside it. The verb still counts
-when it takes an object.
+when it takes an object. Nor utilizar, hoy en día or a día de hoy, which
+are out on the evidence too: across 437,000 words written before 2022
+they fired on more than 200 sentences, and across 169,000 words of model
+output on 6.
 
 **Why.** These sit at the top of the model's distribution and nowhere near the top
 of a person's. Across 58 pieces by one author the whole list fired sixteen

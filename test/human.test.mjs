@@ -202,7 +202,7 @@ test("fixes: an applied fix removes its own finding", () => {
     ["curly-quotes", "Dijo “hola” y se fue."],
     ["semicolon", "No es una plataforma; robusta y clara."],
     ["ai-transition", "Además, el equipo trabaja todos los días sin parar."],
-    ["banned-vocabulary", "Vamos a utilizar el motor en aras de reducir el fraude."],
+    ["banned-vocabulary", "We utilize the engine in order to reduce fraud."],
   ];
   for (const [id, text] of cases) {
     const before = check(text, "a.md").findings.find((f) => f.detector.id === id);
@@ -221,7 +221,7 @@ test("fixes: an applied fix does not write a new one", () => {
     ["curly-quotes", "Dijo “hola” y se fue sin mirar a nadie de los que estaban."],
     ["semicolon", "No es una plataforma cualquiera; aguanta cuatro mil corridas al día."],
     ["ai-transition", "Además, el equipo revisa cada regla antes de dejarla entrar."],
-    ["banned-vocabulary", "Vamos a utilizar el motor en aras de reducir el fraude del mes."],
+    ["banned-vocabulary", "We utilize the engine in order to reduce the fraud of the month."],
   ];
   const hard = (text) => check(text, "a.md").findings
     .filter((f) => f.detector.level === "HARD" && f.hits.length)
@@ -249,7 +249,7 @@ test("diff: the pieces put both versions back together", () => {
   // is shown as "antes" is a page lying about what the draft says.
   const cases = [
     ["La tarea corre sola — y deja el registro.", "em-dash"],
-    ["Vamos a utilizar el motor en aras de reducir el fraude.", "banned-vocabulary"],
+    ["We utilize the engine in order to reduce fraud.", "banned-vocabulary"],
     ["Dijo “hola” y se fue, con su ‘cosa’.", "curly-quotes"],
     ["Además, el equipo trabaja.", "ai-transition"],
   ];
@@ -264,13 +264,13 @@ test("diff: the pieces put both versions back together", () => {
 });
 
 test("diff: two changes in one sentence are two changes", () => {
-  // Trimming only the shared ends turns "utilizar ... en aras de" into one
+  // Trimming only the shared ends turns "utilize ... in order to" into one
   // block covering the words between them, which reads as a rewrite of the
   // whole sentence rather than as two substitutions.
-  const before = "Vamos a utilizar el motor en aras de reducir el fraude.";
+  const before = "We utilize the engine in order to reduce fraud.";
   const parts = diff(before, applyFix("banned-vocabulary", before));
   assert.equal(parts.filter((p) => p.kind === "out").length, 2);
-  assert.ok(parts.some((p) => p.kind === "same" && p.text.includes("el motor")),
+  assert.ok(parts.some((p) => p.kind === "same" && p.text.includes("the engine")),
     "lo que no cambió tiene que quedar marcado como igual");
 });
 

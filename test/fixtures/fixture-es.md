@@ -22,7 +22,7 @@ Para ser justos, hay que reconocer que el límite honesto está ahí.
 Además, el equipo trabaja. Es importante notar que esto es crucial.
 El sistema es la definición de calidad. Las reglas son exhaustivas.
 
-La regla que define la regla que aplica a cada regla queda escrita.
+La regla que define la regla que aplica a cada regla queda escrita como regla de reglas.
 Nadie mira. Nadie revisa. Y ahí está.
 
 El comando corre siempre: cada fase, cada vez, sin fallar nunca jamás.
