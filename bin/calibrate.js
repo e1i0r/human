@@ -16,11 +16,21 @@
  *
  * The corpus has to be prose nobody edited with this tool. Calibrating on text
  * these thresholds already shaped measures the thresholds, not the writer.
+ *
+ * The second mode asks whether each detector is worth having at all:
+ *
+ *   human-calibrate --human old/ --ai model/
+ *
+ * old/ is prose written before anybody could generate it, so every hit there
+ * is a false alarm. model/ is generated text on the same kind of subject. A
+ * detector earns its place when it fires more on the second than on the first;
+ * one that fires more on the first is flagging people.
  */
 import { parseArgs } from "node:util";
-import { readFileSync, writeFileSync } from "node:fs";
-import { basename, join } from "node:path";
+import { readdirSync, readFileSync, statSync, writeFileSync } from "node:fs";
+import { basename, extname, join } from "node:path";
 
+import { check } from "../src/index.js";
 import { DETECTORS } from "../src/detectors/index.js";
 import { CONFIG_NAME } from "../src/config.js";
 import { loadConfig } from "../src/find-config.js";
@@ -135,13 +145,103 @@ function suggest({ rates, rhythms }) {
   return out.join("\n");
 }
 
+const READABLE = new Set([".md", ".markdown", ".html", ".htm"]);
+
+/** Files and directories as given, directories walked for what human can read. */
+function expand(paths) {
+  const out = [];
+  for (const path of paths) {
+    if (!statSync(path).isDirectory()) { out.push(path); continue; }
+    for (const name of readdirSync(path).sort()) {
+      if (name.startsWith(".") || name === "node_modules") continue;
+      const full = join(path, name);
+      if (statSync(full).isDirectory()) out.push(...expand([full]));
+      else if (READABLE.has(extname(name).toLowerCase())) out.push(full);
+    }
+  }
+  return out;
+}
+
+// Under this many hits across both sides a ratio is two or three sentences
+// talking, and printing a verdict on it reads as a finding.
+const ENOUGH_HITS = 10;
+
+/**
+ * Hits per 10,000 words for every detector on each side.
+ *
+ * Words are counted per detector, only in the files whose language it applies
+ * to: a Spanish-only detector measured against English pages would look rare
+ * on whichever side had more English, and say nothing about the detector.
+ */
+function rates(paths, cfg) {
+  const hits = Object.fromEntries(DETECTORS.map((d) => [d.id, 0]));
+  const words = Object.fromEntries(DETECTORS.map((d) => [d.id, 0]));
+  let files = 0;
+  let total = 0;
+  for (const path of paths) {
+    const result = check(readFileSync(path, "utf8"), basename(path), { cfg });
+    if (result.words < ENOUGH_WORDS) continue;
+    files += 1;
+    total += result.words;
+    for (const f of result.findings) {
+      if (f.skipped) continue;
+      hits[f.detector.id] += f.hits.length;
+      words[f.detector.id] += result.words;
+    }
+  }
+  return { hits, words, files, total };
+}
+
+function compare(humanPaths, aiPaths, cfg) {
+  const people = rates(humanPaths, cfg);
+  const model = rates(aiPaths, cfg);
+  console.log(`\n  --human  ${people.files} files · ${people.total.toLocaleString("en-US")} words`);
+  console.log(`  --ai     ${model.files} files · ${model.total.toLocaleString("en-US")} words\n`);
+  console.log(`  ${"detector".padEnd(26)} ${"human".padStart(7)} ${"ai".padStart(7)} `
+    + `${"ratio".padStart(7)}   per 10,000 words`);
+
+  const per = (side, id) => (side.words[id] ? 1e4 * side.hits[id] / side.words[id] : 0);
+  const rows = DETECTORS.map((d) => {
+    const h = per(people, d.id), a = per(model, d.id);
+    // Half a hit on each side keeps a zero from turning into an infinite ratio.
+    return { id: d.id, h, a, ratio: (a + 0.5) / (h + 0.5), n: people.hits[d.id] + model.hits[d.id] };
+  }).sort((x, y) => y.ratio - x.ratio);
+
+  for (const r of rows) {
+    const verdict = r.n === 0 ? "silent on both"
+      : r.n < ENOUGH_HITS ? "too few hits to say"
+      : r.ratio >= 1.5 ? `useful: fires ${r.ratio.toFixed(1)}x more on ai`
+      : r.ratio <= 1 / 1.5 ? "flags people: review"
+      : "no real difference";
+    console.log(`  ${r.id.padEnd(26)} ${pad(r.h, 7, 1)} ${pad(r.a, 7, 1)} `
+      + `${pad(r.ratio, 6, 1)}x   ${verdict}`);
+  }
+  console.log("\n  Every hit on the --human side is a false alarm only if that prose was"
+    + "\n  written before anybody could generate it, and nobody edited it with this tool.\n");
+}
+
 const { values: flags, positionals: files } = parseArgs({
   allowPositionals: true,
-  options: { write: { type: "string" } },
+  options: {
+    write: { type: "string" },
+    human: { type: "string", multiple: true },
+    ai: { type: "string", multiple: true },
+  },
 });
+
+if (flags.human || flags.ai) {
+  if (!flags.human || !flags.ai) {
+    console.log("  human-calibrate --human DIR [--human DIR] --ai DIR [--ai DIR]");
+    process.exit(2);
+  }
+  const humanPaths = expand(flags.human);
+  compare(humanPaths, expand(flags.ai), loadConfig(humanPaths[0] ?? "."));
+  process.exit(0);
+}
 
 if (!files.length) {
   console.log("  human-calibrate FILE [FILE...] [--write=DIR]");
+  console.log("  human-calibrate --human DIR --ai DIR");
   process.exit(2);
 }
 

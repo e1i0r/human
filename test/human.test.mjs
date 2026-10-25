@@ -475,3 +475,19 @@ test("units: a catalogue of the patterns is not a page full of them", () => {
 test("units: a sentence is not cut at an abbreviation", () => {
   assert.equal(split("Costó 3.5 millones. Nadie lo revisó.").length, 2);
 });
+
+test("calibrate --human --ai: one row per detector, and a verdict only on enough hits", () => {
+  // The fixtures are written to trip every detector, so neither side here is
+  // the prose this mode is for. What it checks is the shape: every detector is
+  // accounted for, and a handful of hits never earns a verdict.
+  const out = execFileSync("node", [join(ROOT, "bin/calibrate.js"),
+    "--human", join(HERE, "fixtures/fixture-en.md"), "--ai", join(HERE, "fixtures/fixture-es.md")],
+  { encoding: "utf8" });
+  for (const d of DETECTORS) assert.match(out, new RegExp(`^  ${d.id} `, "m"), `${d.id} is missing`);
+  assert.doesNotMatch(out, /useful|flags people/, "two short fixtures should not produce a verdict");
+});
+
+test("calibrate --human without --ai says how to call it", () => {
+  assert.throws(() => execFileSync("node", [join(ROOT, "bin/calibrate.js"), "--human", HERE],
+    { encoding: "utf8", stdio: "pipe" }), (e) => e.status === 2 && /--ai DIR/.test(e.stdout));
+});

@@ -83,12 +83,14 @@ Twelve ship.
 
 ```
 human-calibrate posts/*.md --write .
+human-calibrate --human old/ --ai model/
 human-voice ~/.claude/projects --write=yourname
 ```
 
 `human-calibrate` writes `.human.toml` from prose you trust.
+With `--human` and `--ai` it compares prose written before generated text existed against model output, and says which detectors catch the model and which flag people.
 `human-voice` profiles you from your chat history.
-Both stay on your machine.
+All three stay on your machine.
 
 ## What a pattern cannot do
 
