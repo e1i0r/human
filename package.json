@@ -1,6 +1,6 @@
 {
   "name": "@e1i0/human",
-  "version": "0.2.2",
+  "version": "0.3.0",
   "description": "Linter for AI writing tells. Counts them and fails CI when one is over budget. Spanish and English, zero dependencies.",
   "type": "module",
   "bin": {
